@@ -1,0 +1,33 @@
+<div class="col-md-10 col-md-offset-2 main">
+	<h3 class="page-header">Profile</h3>
+	<div class="row">
+		<div class="well">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-md-2 control-label">Name</label>
+					<div class="col-md-10">
+						<input class="form-control" id="name" type="text" value="<%= @section.name %>" readonly="readonly">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Level</label>
+					<div class="col-md-10">
+						<input class="form-control" id="level" type="text" value="<%= @section.level %>" readonly="readonly">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Room Number</label>
+					<div class="col-md-10">
+						<input class="form-control" id="room_no" type="text" value="<%= @section.room_number %>" readonly="readonly">
+					</div>
+				</div>
+				<br><br>
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4">
+						<button type="button" class="btn btn-default btn-block"><%= link_to 'Back', "/admin/sections" %></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

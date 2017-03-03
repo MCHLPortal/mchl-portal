@@ -1,0 +1,69 @@
+<div class="col-md-10 col-md-offset-2 main">
+	<h3 class="page-header">Students List</h3>
+	<div class="well well-lg">
+		<div class="row">
+			<div class="col-md-3">
+				<%= form_tag "/admin/students/find" do %>
+				  	<div class="input-group">
+					    <%= text_field_tag :search_string, params[:search], class: "form-control" %>
+					    <span class="input-group-btn">
+					    	<%= submit_tag "Search", class: "btn btn-default" %>
+					    </span>
+				    </div>
+				<% end %>
+			</div>
+		</div>
+		<br>
+		<div class="table-responsive">
+			<table class="table table-default table-hover">
+				<thead>
+					<th class="col-md-2" colspan="3">Name</th>
+					<th class="col-md-1">Sex</th>
+					<th class="col-md-4">Address</th>
+					<th class="col-md-2">Birthdate</th>
+					<th class="col-md-1">Age</th>
+					<th class="col-md-1">Handedness</th>
+					<th class="col-md-1" colspan="3">Options</th>
+				</thead>
+				<tbody>
+					<% @students.each do |student| %>
+						<tr>
+							<td><%= student.fname %></td>
+							<td><%= student.mname %></td>
+							<td><%= student.lname %></td>
+							<td style="text-align: center"><%= student.sex %></td>
+							<td><%= student.address %></td>
+							<td style="text-align: center"><%= student.birthdate %></td>
+							<td style="text-align: center"><%= student.age %></td>
+							<td style="text-align: center"><%= student.handedness %></td>
+							<td style="text-align: center">
+								<a href="/admin/students/<%= student.id %>">
+									<span class="glyphicon glyphicon-eye-open"></span>
+								</a>
+							</td>
+							<td style="text-align: center">
+								<a href="/admin/students/<%= student.id %>/update">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</a>
+							</td>
+							<td style="text-align: center">
+								<a href="/admin/students/<%= student.id %>/delete">
+									<span class="glyphicon glyphicon-remove"></span>
+								</a>
+							</td>
+						</tr>
+					<% end %>
+			  	</tbody>
+			</table>
+		</div><br>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<% if controller.action_name == "students" %>
+					<button type="button" class="btn btn-default btn-block"><%= link_to 'Add Student', "/admin/students/new" %></button>
+				<% elsif controller.action_name == "find_student" %>
+					<button type="button" class="btn btn-default btn-block"><%= link_to 'Back', "/admin/students" %></button>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

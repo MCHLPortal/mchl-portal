@@ -1,0 +1,149 @@
+<div class="col-md-10 col-md-offset-2 main">
+	<h3 class="page-header">Update Student</h3>
+	<div class="well">
+		<%= form_for(@student, :url => {:action => "update_student"}, :html => {:class => "form-horizontal"}) do |f| %>
+			<p class="text-center"><strong>Personal Information</strong></p>
+			<div class="form-group">
+				<%= f.label :name, "Name", class: "col-md-2 control-label" %>
+				<div class="col-md-3">
+					<%= f.text_field :fname, class: "form-control" %>
+				</div>
+				<div class="col-md-3">
+					<%= f.text_field :mname, class: "form-control" %>
+				</div>
+				<div class="col-md-3">
+					<%= f.text_field :lname, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :sex, "Sex", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<label class="radio-inline">
+						<%= f.radio_button :sex, 'M' %> Male
+					</label>
+					<label class="radio-inline">
+						<%= f.radio_button :sex, 'F' %> Female
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :address, "Address", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.text_field :address, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :name, "Birthdate", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.text_field :birthdate, :value => @student.birthdate.strftime("%d/%m/%Y"), class: "form-control", "data-provide" => 'datepicker' %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :handedness, "Handedness", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<label class="radio-inline">
+						<%= f.radio_button :handedness, 'Right' %> Right
+					</label>
+					<label class="radio-inline">
+						<%= f.radio_button :handedness, 'Left' %> Left
+					</label>
+					<label class="radio-inline">
+						<%= f.radio_button :handedness, 'Both' %> Both
+					</label>
+					<label class="radio-inline">
+						<%= f.radio_button :handedness, 'N/A' %> Not yet established
+					</label>
+				</div>
+			</div>
+			<br>
+			<p class="text-center"><strong>Father's Information</strong></p>
+			<div class="form-group">
+				<%= f.label :father_name, "Name", class: "col-md-2 control-label" %>
+				<div class="col-md-3">
+					<%= f.text_field :father_fname, class: "form-control" %>
+				</div>
+				<div class="col-md-3">
+					<%= f.text_field :father_mname, class: "form-control" %>
+				</div>
+				<div class="col-md-3">
+					<%= f.text_field :father_lname, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :father_occupation, "Occupation", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.text_field :father_occupation, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :father_age, "Age", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.text_field :father_age, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :father_educ_attainment, "Educational Attainment", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<label class="radio-inline">
+						<%= f.radio_button :father_educ_attainment, 'Elementary' %> Elementary
+					</label>
+					<label class="radio-inline">
+						<%= f.radio_button :father_educ_attainment, 'High School' %> High School
+					</label>
+					<label class="radio-inline">
+						<%= f.radio_button :father_educ_attainment, 'College' %> College
+					</label>
+				</div>
+			</div>
+			<br>
+			<p class="text-center"><strong>Mother's Information</strong></p>
+			<div class="form-group">
+				<%= f.label :mother_name, "Name", class: "col-md-2 control-label" %>
+				<div class="col-md-3">
+					<%= f.text_field :mother_fname, class: "form-control" %>
+				</div>
+				<div class="col-md-3">
+					<%= f.text_field :mother_mname, class: "form-control" %>
+				</div>
+				<div class="col-md-3">
+					<%= f.text_field :mother_lname, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :mother_occupation, "Occupation", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.text_field :mother_occupation, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :mother_age, "Age", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.text_field :mother_age, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :mother_educ_attainment, "Educational Attainment", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<label class="radio-inline">
+						<%= f.radio_button :mother_educ_attainment, 'Elementary' %> Elementary
+					</label>
+					<label class="radio-inline">
+						<%= f.radio_button :mother_educ_attainment, 'High School' %> High School
+					</label>
+					<label class="radio-inline">
+						<%= f.radio_button :mother_educ_attainment, 'College' %> College
+					</label>
+				</div>
+			</div>
+			<br><br>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-2">
+					<button type="button" class="btn btn-default btn-block"><%= link_to 'Back', "/admin/students" %></button>
+				</div>
+				<div class="col-md-4">
+					<%= f.submit "Update", class: "btn btn-default btn-default btn-block" %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

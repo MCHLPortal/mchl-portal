@@ -1,0 +1,81 @@
+<div class="col-md-10 col-md-offset-2 main">
+	<h3 class="page-header">Classmates</h3>
+	<div class="col-md-12 midDiv">
+		<div class="panel-body table_header subject">
+			<ul class="list-unstyled">
+				<li class="text-center">
+					<h3 class="semibold"><b>Section Name</b></h3>
+					<span>Section</span>
+				</li>
+			</ul>
+		</div>
+		<div class="panel-body">
+			<ul class="nav-justified">
+				<li>
+					<div class="sec">
+						<h3 class="semibold">Helimar Rabago</h3>
+						<span>Teacher</span>
+					</div>
+				</li>
+				<li>
+					<div class="sec">
+						<h3 class="semibold">111</h3>
+						<span>Room#</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="row placeholders">
+			<div class="col-md-6 placeholder">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="text-align: center">Students</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th width="30%">First Name</th>
+									<th width="30%">Middle Name</th>
+									<th width="30%">Last Name</th>
+									<th width="10%">Options</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @students.each do |student| %>
+								<tr>
+									<td><%= student.fname %></td>
+									<td><%= student.mname %></td>
+									<td><%= student.lname %></td>
+									<td style="text-align: center">
+										<a href="/teachers/student/<%= student.id %>">
+											<span class="glyphicon glyphicon-eye-open"></span>
+										</a>
+										<a href="/teachers/student/<%= student.id %>/report_card">
+											<span class="glyphicon glyphicon-list-alt"></span>
+										</a>
+									</td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 placeholder">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="text-align: center">Subjects</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Name</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
