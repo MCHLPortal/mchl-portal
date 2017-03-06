@@ -1,43 +1,49 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  lname: MyString
+  username: MyString
+  password_digest: MyString
   fname: MyString
   mname: MyString
+  lname: MyString
   sex: MyString
-  birthdate: 2017-02-23
-  age: 1
+  address: MyString
+  birthdate: 2017-03-05
   handedness: MyString
-  father_lname: MyString
   father_fname: MyString
   father_mname: MyString
+  father_lname: MyString
   father_occupation: MyString
   father_age: 1
   father_educ_attainment: MyString
-  mother_lname: MyString
   mother_fname: MyString
   mother_mname: MyString
+  mother_lname: MyString
   mother_occupation: MyString
   mother_age: 1
   mother_educ_attainment: MyString
+  id_number: MyString
 
 two:
-  lname: MyString
+  username: MyString
+  password_digest: MyString
   fname: MyString
   mname: MyString
+  lname: MyString
   sex: MyString
-  birthdate: 2017-02-23
-  age: 1
+  address: MyString
+  birthdate: 2017-03-05
   handedness: MyString
-  father_lname: MyString
   father_fname: MyString
   father_mname: MyString
+  father_lname: MyString
   father_occupation: MyString
   father_age: 1
   father_educ_attainment: MyString
-  mother_lname: MyString
   mother_fname: MyString
   mother_mname: MyString
+  mother_lname: MyString
   mother_occupation: MyString
   mother_age: 1
   mother_educ_attainment: MyString
+  id_number: MyString

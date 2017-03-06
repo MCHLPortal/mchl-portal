@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+  delete '/logout' => 'sessions#destroy'
+
   get '/students/home' => 'students#home'
   get '/students/profile' => 'students#profile'
   get '/students/report_card' => 'students#report_card'
@@ -14,7 +19,8 @@ Rails.application.routes.draw do
 
   get '/teachers/home' => 'teachers#home'
   get '/teachers/class' => 'teachers#show_class'
-  get '/teachers/student/:id' => 'teachers#show_student'
+  post '/teachers/class/find' => 'teachers#find'
+  get '/teachers/class/student/:id' => 'teachers#show_student'
 
   get '/admin/home' => 'admins#home'
   get '/admin/students' => 'admins#students'

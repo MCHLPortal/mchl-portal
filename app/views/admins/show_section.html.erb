@@ -1,5 +1,5 @@
 <div class="col-md-10 col-md-offset-2 main">
-	<h3 class="page-header">Profile</h3>
+	<h3 class="page-header">Section</h3>
 	<div class="row">
 		<div class="well">
 			<form class="form-horizontal">
@@ -21,13 +21,47 @@
 						<input class="form-control" id="room_no" type="text" value="<%= @section.room_number %>" readonly="readonly">
 					</div>
 				</div>
-				<br><br>
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4">
-						<button type="button" class="btn btn-default btn-block"><%= link_to 'Back', "/admin/sections" %></button>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Adviser</label>
+					<div class="col-md-10">
+						<input class="form-control" id="room_no" type="text" value="<%= @section.employee.fname %> <%= @section.employee.lname %>"readonly="readonly">
 					</div>
 				</div>
 			</form>
+			<br>
+			<p class="text-center"><strong>Students Enrolled</strong></p>
+			<div class="table-responsive">
+				<table class="table table-default table-hover">
+					<thead>
+						<th class="col-md-2">ID</th>
+						<th class="col-md-3" colspan="3">Name</th>
+						<th class="col-md-1">Sex</th>
+						<th class="col-md-3">Address</th>
+						<th class="col-md-2">Birthdate</th>
+						<th class="col-md-1">Age</th>
+					</thead>
+					<tbody>
+						<% @section.student.each do |student| %>
+							<tr>
+								<td style="text-align: center"><%= student.student_id %></td>
+								<td><%= student.fname %></td>
+								<td><%= student.mname %></td>
+								<td><%= student.lname %></td>
+								<td style="text-align: center"><%= student.sex %></td>
+								<td><%= student.address %></td>
+								<td style="text-align: center"><%= student.birthdate %></td>
+								<td style="text-align: center"><%= student.age %></td>
+							</tr>
+						<% end %>
+				  	</tbody>
+				</table>
+			</div>
+			<br><br>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<button type="button" class="btn btn-default btn-block"><%= link_to 'Back', "/admin/sections" %></button>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

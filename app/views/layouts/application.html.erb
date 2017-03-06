@@ -7,154 +7,165 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-2 first">
-					<div class="navbar-header">
-						<div class="navbar-brand">
-							<strong>MCHL</strong>Portal
+	<% if controller.controller_name == "admins" || controller.controller_name == "teachers" ||
+		controller.controller_name == "students" %>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-2 first">
+						<div class="navbar-header">
+							<div class="navbar-brand">
+								<strong>MCHL</strong>Portal
+							</div>
+						</div>
+					</div>
+					<div class="col-md-10 second">
+						<div id="navbar" class="navbar-collapse collapse">
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a class="logout" href="/logout">
+										<span class="glyphicon glyphicon-log-out"></span>
+										Logout
+									</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-10 second">
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav navbar-right">
+			</div>
+		</nav>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2 sidebar">
+					<% if controller.controller_name == "admins" %>
+						<ul class="nav nav-sidebar display">
 							<li>
-								<a class="logout" href="#">
-									<span class="glyphicon glyphicon-log-out"></span>
+								<img src="/images/logo.gif" width="150" height="150" class="img-circle center-block">
+							</li>
+							<li>
+								<div class="text-center" style="font-size: 15px">
+									<strong><%= current_user.fname %> <%= current_user.lname %></strong>
+								</div>
+								<div class="text-center" style="font-size: 11px">ADMINISTRATOR</div>
+							</li>
+						</ul>
+						<ul class="nav nav-sidebar">
+							<li class="<%= 'active' if controller.action_name == "home" %>">
+								<a href="<%= "/admin/home" %>">
+									<span class="glyphicon glyphicon-home"></span>
+									Home
+								</a>
+							</li>
+							<li class="<%= 'active' if controller.action_name == "students" ||
+								controller.action_name == "show_student" ||
+								controller.action_name == "edit_student" ||
+								controller.action_name == "new_student" ||
+								controller.action_name == "find_student" %>">
+								<a href="<%= "/admin/students" %>">
+									<span class="glyphicon glyphicon-user"></span>
+									Students
+								</a>
+							</li>
+							<li class="<%= 'active' if controller.action_name == "teachers" ||
+								controller.action_name == "show_teacher" || 
+								controller.action_name == "edit_teacher" ||
+								controller.action_name == "new_teacher" ||
+								controller.action_name == "find_teacher" %>">
+								<a href="<%= "/admin/teachers" %>">
+									<span class="glyphicon glyphicon-education"></span>
+									Teachers
+								</a>
+							</li>
+							<li class="<%= 'active' if controller.action_name == "sections" ||
+								controller.action_name == "show_section" ||
+								controller.action_name == "edit_section" ||
+								controller.action_name == "new_section" ||
+								controller.action_name == "find_section" %>">
+								<a href="<%= "/admin/sections" %>">
+									<span class="glyphicon glyphicon-blackboard"></span>
+									Sections
 								</a>
 							</li>
 						</ul>
-					</div>
+					<% elsif controller.controller_name == "teachers" %>
+						<ul class="nav nav-sidebar display">
+							<li>
+								<img src="/images/logo.gif" width="150" height="150" class="img-circle center-block">
+							</li>
+							<li>
+								<div class="text-center" style="font-size: 15px">
+									<strong><%= current_user.fname %> <%= current_user.lname %></strong>
+								</div>
+								<div class="text-center" style="font-size: 11px">TEACHER</div>
+							</li>
+						</ul>
+						<ul class="nav nav-sidebar">
+							<li class="<%= 'active' if controller.action_name == "home" %>">
+								<a href="<%= "/teachers/home" %>">
+									<span class="glyphicon glyphicon-home"></span>
+									Home
+								</a>
+							</li>
+							<li class="<%= 'active' if controller.action_name == "show_class" ||
+								controller.action_name == "find" || controller.action_name == "show_student" %>">
+								<a href="<%= "/teachers/class" %>">
+									<span class="glyphicon glyphicon-book"></span>
+									Class
+								</a>
+							</li>
+						</ul>
+					<% elsif controller.controller_name == "students" %>
+						<ul class="nav nav-sidebar display">
+							<li>
+								<img src="/images/logo.gif" width="150" height="150" class="img-circle center-block">
+							</li>
+							<li>
+								<div class="text-center" style="font-size: 15px">
+									<strong><%= current_user.fname %> <%= current_user.lname %></strong>
+								</div>
+								<div class="text-center" style="font-size: 11px">STUDENT</div>
+							</li>
+						</ul>
+						<ul class="nav nav-sidebar">
+							<li class="<%= 'active' if controller.action_name == "home" %>">
+								<a href="<%= "/students/home" %>">
+									<span class="glyphicon glyphicon-home"></span>
+									Home
+								</a>
+							</li>
+							<li class="<%= 'active' if controller.action_name == "report_card" ||
+										controller.action_name == "report_card_gmd" ||
+										controller.action_name == "report_card_fmd" ||
+										controller.action_name == "report_card_shd" ||
+										controller.action_name == "report_card_rld" ||
+										controller.action_name == "report_card_eld" ||
+										controller.action_name == "report_card_cd" ||
+										controller.action_name == "report_card_sed" %>">
+								<a href="<%= "/students/report_card" %>">
+									<span class="glyphicon glyphicon-list-alt"></span>
+									Report Card
+								</a>
+							</li>
+							<li class="<%= 'active' if controller.action_name == "my_class" %>">
+								<a href="class">
+									<span class="glyphicon glyphicon-book"></span>
+									Class
+								</a>
+							</li>
+							<li class="<%= 'active' if current_page?("/students/payments") %>">
+								<a href="<%= "/students/payments" %>">
+									<span class="glyphicon glyphicon-usd""></span>
+									Payments
+								</a>
+							</li>
+						</ul>
+					<% end %>
 				</div>
+	  			<%= yield %>
 			</div>
 		</div>
-	</nav>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-2 sidebar">
-				<% if controller.controller_name == "admins" %>
-					<ul class="nav nav-sidebar display">
-						<li>
-							<img src="/images/profile.jpg" width="130" height="130" class="img-circle center-block">
-						</li>
-						<li>
-							<div class="text-center" style="font-size: 15px"><strong>John Doe</strong></div>
-							<div class="text-center" style="font-size: 11px">ADMINISTRATOR</div>
-						</li>
-					</ul>
-					<ul class="nav nav-sidebar">
-						<li class="<%= 'active' if controller.action_name == "home" %>">
-							<a href="<%= "/admin/home" %>">
-								<span class="glyphicon glyphicon-home"></span>
-								Home
-							</a>
-						</li>
-						<li class="<%= 'active' if controller.action_name == "students" ||
-							controller.action_name == "show_student" ||
-							controller.action_name == "edit_student" ||
-							controller.action_name == "new_student" ||
-							controller.action_name == "find_student" %>">
-							<a href="<%= "/admin/students" %>">
-								<span class="glyphicon glyphicon-user"></span>
-								Students
-							</a>
-						</li>
-						<li class="<%= 'active' if controller.action_name == "teachers" ||
-							controller.action_name == "show_teacher" || 
-							controller.action_name == "edit_teacher" ||
-							controller.action_name == "new_teacher" ||
-							controller.action_name == "find_teacher" %>">
-							<a href="<%= "/admin/teachers" %>">
-								<span class="glyphicon glyphicon-education"></span>
-								Teachers
-							</a>
-						</li>
-						<li class="<%= 'active' if controller.action_name == "sections" ||
-							controller.action_name == "show_section" ||
-							controller.action_name == "edit_section" ||
-							controller.action_name == "new_section" ||
-							controller.action_name == "find_section" %>">
-							<a href="<%= "/admin/sections" %>">
-								<span class="glyphicon glyphicon-blackboard"></span>
-								Sections
-							</a>
-						</li>
-					</ul>
-				<% elsif controller.controller_name == "teachers" %>
-					<ul class="nav nav-sidebar display">
-						<li>
-							<img src="/images/profile.jpg" width="130" height="130" class="img-circle center-block">
-						</li>
-						<li>
-							<div class="text-center" style="font-size: 15px"><strong>John Doe</strong></div>
-							<div class="text-center" style="font-size: 11px">TEACHER</div>
-						</li>
-					</ul>
-					<ul class="nav nav-sidebar">
-						<li class="<%= 'active' if current_page?("/teachers/home") %>">
-							<a href="<%= "/teachers/home" %>">
-								<span class="glyphicon glyphicon-home"></span>
-								Home
-							</a>
-						</li>
-						<li class="<%= 'active' if current_page?("/teachers/class") ||
-									current_page?("/teachers/new_student") ||
-									current_page?("/teachers/student/:id") %>">
-							<a href="<%= "/teachers/class" %>">
-								<span class="glyphicon glyphicon-book"></span>
-								Class
-							</a>
-						</li>
-					</ul>
-				<% elsif controller.controller_name == "students" %>
-					<ul class="nav nav-sidebar display">
-						<li>
-							<img src="/images/profile.jpg" width="130" height="130" class="img-circle center-block">
-						</li>
-						<li>
-							<div class="text-center" style="font-size: 15px"><strong>John Doe</strong></div>
-							<div class="text-center" style="font-size: 11px">STUDENT</div>
-						</li>
-					</ul>
-					<ul class="nav nav-sidebar">
-						<li class="<%= 'active' if current_page?("/students/home") %>">
-							<a href="<%= "/students/home" %>">
-								<span class="glyphicon glyphicon-home"></span>
-								Home
-							</a>
-						</li>
-						<li class="<%= 'active' if current_page?("/students/report_card") ||
-									current_page?("/students/report_card_gmd") ||
-									current_page?("/students/report_card_fmd") ||
-									current_page?("/students/report_card_shd") ||
-									current_page?("/students/report_card_rld") ||
-									current_page?("/students/report_card_eld") ||
-									current_page?("/students/report_card_cd") ||
-									current_page?("/students/report_card_sed") %>">
-							<a href="<%= "/students/report_card" %>">
-								<span class="glyphicon glyphicon-list-alt"></span>
-								Report Card
-							</a>
-						</li>
-						<li class="<%= 'active' if current_page?("/students/class") %>">
-							<a href="class">
-								<span class="glyphicon glyphicon-book"></span>
-								Class
-							</a>
-						</li>
-						<li class="<%= 'active' if current_page?("/students/payments") %>">
-							<a href="<%= "/students/payments" %>">
-								<span class="glyphicon glyphicon-usd""></span>
-								Payments
-							</a>
-						</li>
-					</ul>
-				<% end %>
-			</div>
-  			<%= yield %>
-		</div>
-	</div>
+	<% elsif %>
+		<%= yield %>
+	<% end %>
 </body>
 </html>

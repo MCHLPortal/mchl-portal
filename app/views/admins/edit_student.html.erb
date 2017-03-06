@@ -4,6 +4,24 @@
 		<%= form_for(@student, :url => {:action => "update_student"}, :html => {:class => "form-horizontal"}) do |f| %>
 			<p class="text-center"><strong>Personal Information</strong></p>
 			<div class="form-group">
+				<%= f.label :student_id, "ID Number", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.text_field :student_id, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :username, "Username", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.text_field :username, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
+				<%= f.label :password, "Password", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.text_field :password, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group">
 				<%= f.label :name, "Name", class: "col-md-2 control-label" %>
 				<div class="col-md-3">
 					<%= f.text_field :fname, class: "form-control" %>
@@ -35,7 +53,7 @@
 			<div class="form-group">
 				<%= f.label :name, "Birthdate", class: "col-md-2 control-label" %>
 				<div class="col-md-9">
-					<%= f.text_field :birthdate, :value => @student.birthdate.strftime("%d/%m/%Y"), class: "form-control", "data-provide" => 'datepicker' %>
+					<%= f.text_field :birthdate, :value => @student.birthdate.strftime("%m/%d/%Y"), class: "form-control", "data-provide" => 'datepicker' %>
 				</div>
 			</div>
 			<div class="form-group">
@@ -133,6 +151,14 @@
 					<label class="radio-inline">
 						<%= f.radio_button :mother_educ_attainment, 'College' %> College
 					</label>
+				</div>
+			</div>
+			<br>
+			<p class="text-center"><strong>Academic Information</strong></p>
+				<div class="form-group">
+				<%= f.label :sections_id, "Section", class: "col-md-2 control-label" %>
+				<div class="col-md-9">
+					<%= f.select(:sections_id, @sections, {}, {class: "form-control"}) %>
 				</div>
 			</div>
 			<br><br>

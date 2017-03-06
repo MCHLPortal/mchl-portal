@@ -1,78 +1,55 @@
 <div class="col-md-10 col-md-offset-2 main">
-	<h3 class="page-header">Classmates</h3>
-	<div class="col-md-12 midDiv">
-		<div class="panel-body table_header subject">
-			<ul class="list-unstyled">
-				<li class="text-center">
-					<h3 class="semibold"><b>Section Name</b></h3>
-					<span>Section</span>
-				</li>
-			</ul>
-		</div>
-		<div class="panel-body">
-			<ul class="nav-justified">
-				<li>
-					<div class="sec">
-						<h3 class="semibold">Helimar Rabago</h3>
-						<span>Teacher</span>
+	<h3 class="page-header">Section</h3>
+	<div class="row">
+		<div class="well">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-md-2 control-label">Name</label>
+					<div class="col-md-10">
+						<input class="form-control" id="name" type="text" value="<%= current_user.section.name %>" readonly="readonly">
 					</div>
-				</li>
-				<li>
-					<div class="sec">
-						<h3 class="semibold">111</h3>
-						<span>Room#</span>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Level</label>
+					<div class="col-md-10">
+						<input class="form-control" id="level" type="text" value="<%= current_user.section.level %>" readonly="readonly">
 					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<table class="table table-bordered table-hover">
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Room Number</label>
+					<div class="col-md-10">
+						<input class="form-control" id="room_no" type="text" value="<%= current_user.section.room_number %>" readonly="readonly">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Adviser</label>
+					<div class="col-md-10">
+						<input class="form-control" id="room_no" type="text" value="<%= current_user.employee.fname %> <%= current_user.employee.lname %>"readonly="readonly">
+					</div>
+				</div>
+			</form>
+			<br>
+			<p class="text-center"><strong>Classmates</strong></p>
+			<div class="table-responsive">
+				<table class="table table-default table-hover">
 					<thead>
-						<tr>
-							<th width="5%"></th>
-							<th style="text-align: center"><b>NAME</b></th>
-						</tr>
+						<th class="col-md-3">ID</th>
+						<th class="col-md-3">First Name</th>
+						<th class="col-md-3">Middle Name</th>
+						<th class="col-md-3">Last Name</th>
 					</thead>
 					<tbody>
-						<tr>
-							<td>
-								<img class="imageSmall" src="/images/student.png" />
-							</td>
-							<td>
-								<p><b>Concina</b>, Jonas</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<img class="imageSmall" src="/images/student.png" />
-							</td>
-							<td>
-								<p><b>Moreno</b>, Monette</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-md-6">
-				<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<th style="text-align: center"><b>SUBJECTS</b></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<p>--</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<p>--</p>
-							</td>
-						</tr>
-					</tbody>
+						<% Student.where(:sections_id => current_user.sections_id).each do |student| %>
+							<% if student.id != current_user.id %>
+								<tr>
+									<td style="text-align: center"><%= student.student_id %></td>
+									<td><%= student.fname %></td>
+									<td><%= student.mname %></td>
+									<td><%= student.lname %></td>
+								</tr>
+							<% end %>
+						<% end %>
+				  	</tbody>
 				</table>
 			</div>
 		</div>

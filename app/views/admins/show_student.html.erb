@@ -1,9 +1,21 @@
 <div class="col-md-10 col-md-offset-2 main">
-	<h3 class="page-header">Profile</h3>
+	<h3 class="page-header">Student</h3>
 	<div class="row">
 		<div class="well">
 			<form class="form-horizontal">
 				<p class="text-center"><strong>Personal Information</strong></p>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Student ID</label>
+					<div class="col-md-9">
+						<input class="form-control" id="student_id" type="text" value="<%= @student.student_id %>" readonly="readonly">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Username</label>
+					<div class="col-md-9">
+						<input class="form-control" id="username" type="text" value="<%= @student.username %>" readonly="readonly">
+					</div>
+				</div>
 				<div class="form-group">
 					<label class="col-md-2 control-label">Name</label>
 					<div class="col-md-3">
@@ -110,6 +122,20 @@
 						<input class="form-control" id="mother_educ_attainment" type="text" value="<%= @student.mother_educ_attainment %>" readonly="readonly">
 					</div>
 				</div>
+				<br>
+				<p class="text-center"><strong>Academic Information</strong></p>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Section</label>
+					<div class="col-md-9">
+						<input class="form-control" id="section" type="text" value="<%= @student.section.name %>" readonly="readonly">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Adviser</label>
+					<div class="col-md-9">
+						<input class="form-control" id="adviser" type="text" value="<%= @student.section.employee.fname %> <%= @student.section.employee.lname %>" readonly="readonly">
+					</div>
+				</div
 				<br><br>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4">
