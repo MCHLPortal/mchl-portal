@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305200804) do
+ActiveRecord::Schema.define(version: 20170315125731) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "fname"
@@ -19,14 +18,13 @@ ActiveRecord::Schema.define(version: 20170305200804) do
     t.string   "lname"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "sections_id"
+    t.integer  "section_id"
     t.string   "employee_id"
     t.string   "password_digest"
     t.boolean  "admin"
     t.string   "username"
+    t.index ["section_id"], name: "index_employees_on_section_id"
   end
-
-  add_index "employees", ["sections_id"], name: "index_employees_on_sections_id"
 
   create_table "sections", force: :cascade do |t|
     t.string   "name"
@@ -62,10 +60,9 @@ ActiveRecord::Schema.define(version: 20170305200804) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "age"
-    t.integer  "sections_id"
+    t.integer  "section_id"
+    t.index ["section_id"], name: "index_students_on_section_id"
   end
-
-  add_index "students", ["sections_id"], name: "index_students_on_sections_id"
 
   create_table "subjects", force: :cascade do |t|
     t.string   "name"

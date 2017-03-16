@@ -30,5 +30,6 @@ class StudentsController < ApplicationController
 	end
 
 	def my_class
+		@classmates = Student.where(:section_id => current_user.section_id).where.not(:id => current_user.id)
 	end
 end

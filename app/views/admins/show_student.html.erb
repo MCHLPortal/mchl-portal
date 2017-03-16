@@ -1,148 +1,160 @@
-<div class="col-md-10 col-md-offset-2 main">
-	<h3 class="page-header">Student</h3>
-	<div class="row">
-		<div class="well">
+<div class="col-sm-10 col-sm-offset-2 main">
+	<h3>Student</h3>
+	<div class="panel panel-default">
+		<div class="panel-body">
 			<form class="form-horizontal">
-				<p class="text-center"><strong>Personal Information</strong></p>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Student ID</label>
-					<div class="col-md-9">
-						<input class="form-control" id="student_id" type="text" value="<%= @student.student_id %>" readonly="readonly">
+				<div class="well">
+					<div class="row">
+						<p class="text-center"><strong>Personal Information</strong></p>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Student ID</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="student_id" type="text" value="<%= @student.student_id %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Username</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="username" type="text" value="<%= @student.username %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-3">
+								<input class="form-control" id="fname" type="text" value="<%= @student.fname %>" readonly="readonly">
+							</div>
+							<div class="col-sm-3">
+								<input class="form-control" id="mname" type="text" value="<%= @student.mname %>" readonly="readonly">
+							</div>
+							<div class="col-sm-3">
+								<input class="form-control" id="lname" type="text" value="<%= @student.lname %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Sex</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="sex" type="text" value="<%= @student.sex %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Address</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="address" type="text" value="<%= @student.address %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Birthdate</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="birthdate" type="text" value="<%= @student.birthdate %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Age</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="age" type="text" value="<%= @student.age %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Handedness</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="handedness" type="text" value="<%= @student.handedness %>" readonly="readonly">
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Username</label>
-					<div class="col-md-9">
-						<input class="form-control" id="username" type="text" value="<%= @student.username %>" readonly="readonly">
+				<div class="well">
+					<div class="row">
+						<p class="text-center"><strong>Father's Information</strong></p>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-3">
+								<input class="form-control" id="father_fname" type="text" value="<%= @student.father_fname %>" readonly="readonly">
+							</div>
+							<div class="col-sm-3">
+								<input class="form-control" id="father_mname" type="text" value="<%= @student.father_mname %>" readonly="readonly">
+							</div>
+							<div class="col-sm-3">
+								<input class="form-control" id="father_lname" type="text" value="<%= @student.father_lname %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Occupation</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="father_occupation" type="text" value="<%= @student.father_occupation %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Age</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="father_age" type="text" value="<%= @student.father_age %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Attainment</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="father_educ_attainment" type="text" value="<%= @student.father_educ_attainment %>" readonly="readonly">
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Name</label>
-					<div class="col-md-3">
-						<input class="form-control" id="fname" type="text" value="<%= @student.fname %>" readonly="readonly">
-					</div>
-					<div class="col-md-3">
-						<input class="form-control" id="mname" type="text" value="<%= @student.mname %>" readonly="readonly">
-					</div>
-					<div class="col-md-3">
-						<input class="form-control" id="lname" type="text" value="<%= @student.lname %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Sex</label>
-					<div class="col-md-9">
-						<input class="form-control" id="sex" type="text" value="<%= @student.sex %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Address</label>
-					<div class="col-md-9">
-						<input class="form-control" id="address" type="text" value="<%= @student.address %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Birthdate</label>
-					<div class="col-md-9">
-						<input class="form-control" id="birthdate" type="text" value="<%= @student.birthdate %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Age</label>
-					<div class="col-md-9">
-						<input class="form-control" id="age" type="text" value="<%= @student.age %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Handedness</label>
-					<div class="col-md-9">
-						<input class="form-control" id="handedness" type="text" value="<%= @student.handedness %>" readonly="readonly">
+				<div class="well">
+					<div class="row">
+						<p class="text-center"><strong>Mother's Information</strong></p>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-3">
+								<input class="form-control" id="mother_fname" type="text" value="<%= @student.mother_fname %>" readonly="readonly">
+							</div>
+							<div class="col-sm-3">
+								<input class="form-control" id="mother_mname" type="text" value="<%= @student.mother_mname %>" readonly="readonly">
+							</div>
+							<div class="col-sm-3">
+								<input class="form-control" id="mother_lname" type="text" value="<%= @student.mother_lname %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Occupation</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="mother_occupation" type="text" value="<%= @student.mother_occupation %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Age</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="mother_age" type="text" value="<%= @student.mother_age %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Attainment</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="mother_educ_attainment" type="text" value="<%= @student.mother_educ_attainment %>" readonly="readonly">
+							</div>
+						</div>
 					</div>
 				</div>
-				<br>
-				<p class="text-center"><strong>Father's Information</strong></p>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Name</label>
-					<div class="col-md-3">
-						<input class="form-control" id="father_fname" type="text" value="<%= @student.father_fname %>" readonly="readonly">
+				<div class="well">
+					<div class="row">
+						<p class="text-center"><strong>Academic Information</strong></p>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Section</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="section" type="text" value="<%= @student.section.name %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Adviser</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="adviser" type="text" value="<%= @student.section.employee.fname %> <%= @student.section.employee.lname %>" readonly="readonly">
+							</div>
+						</div>
 					</div>
-					<div class="col-md-3">
-						<input class="form-control" id="father_mname" type="text" value="<%= @student.father_mname %>" readonly="readonly">
-					</div>
-					<div class="col-md-3">
-						<input class="form-control" id="father_lname" type="text" value="<%= @student.father_lname %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Occupation</label>
-					<div class="col-md-9">
-						<input class="form-control" id="father_occupation" type="text" value="<%= @student.father_occupation %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Age</label>
-					<div class="col-md-9">
-						<input class="form-control" id="father_age" type="text" value="<%= @student.father_age %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Educational Attainment</label>
-					<div class="col-md-9">
-						<input class="form-control" id="father_educ_attainment" type="text" value="<%= @student.father_educ_attainment %>" readonly="readonly">
-					</div>
-				</div>
-				<br>
-				<p class="text-center"><strong>Mother's Information</strong></p>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Name</label>
-					<div class="col-md-3">
-						<input class="form-control" id="mother_fname" type="text" value="<%= @student.mother_fname %>" readonly="readonly">
-					</div>
-					<div class="col-md-3">
-						<input class="form-control" id="mother_mname" type="text" value="<%= @student.mother_mname %>" readonly="readonly">
-					</div>
-					<div class="col-md-3">
-						<input class="form-control" id="mother_lname" type="text" value="<%= @student.mother_lname %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Occupation</label>
-					<div class="col-md-9">
-						<input class="form-control" id="mother_occupation" type="text" value="<%= @student.mother_occupation %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Age</label>
-					<div class="col-md-9">
-						<input class="form-control" id="mother_age" type="text" value="<%= @student.mother_age %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Educational Attainment</label>
-					<div class="col-md-9">
-						<input class="form-control" id="mother_educ_attainment" type="text" value="<%= @student.mother_educ_attainment %>" readonly="readonly">
-					</div>
-				</div>
-				<br>
-				<p class="text-center"><strong>Academic Information</strong></p>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Section</label>
-					<div class="col-md-9">
-						<input class="form-control" id="section" type="text" value="<%= @student.section.name %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Adviser</label>
-					<div class="col-md-9">
-						<input class="form-control" id="adviser" type="text" value="<%= @student.section.employee.fname %> <%= @student.section.employee.lname %>" readonly="readonly">
-					</div>
-				</div
-				<br><br>
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4">
-						<button type="button" class="btn btn-default btn-block"><%= link_to 'Back', "/admin/students" %></button>
-					</div>
-				</div>
+				</div><br>
 			</form>
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-4">
+					<%= button_to('Back', "/admin/students", {method: 'get', :class => 'btn btn-large btn-primary btn-block'})  %>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

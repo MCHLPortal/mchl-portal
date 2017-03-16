@@ -3,11 +3,11 @@ class TeachersController < ApplicationController
 	end
 
 	def show_class
-		@students = Student.where(:sections_id => current_user.sections_id)
+		@students = Student.where(:section_id => current_user.section_id)
 	end
 
 	def find
-		@students = Student.where("(fname = ? OR mname = ? OR lname = ?) AND sections_id = ?", params[:search_string], params[:search_string], params[:search_string], current_user.sections_id)
+		@students = Student.where("(fname = ? OR mname = ? OR lname = ?) AND section_id = ?", params[:search_string], params[:search_string], params[:search_string], current_user.section_id)
 	
 		render "show_class"
 	end

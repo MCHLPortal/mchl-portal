@@ -1,37 +1,34 @@
-<div class="col-md-10 col-md-offset-2 main">
-	<h3 class="page-header">Class</h3>
-	<div class="row">
-		<div class="well">
+<div class="col-sm-10 col-sm-offset-2 main">
+	<h3>Class</h3>
+	<div class="panel panel-default">
+		<div class="panel-body">
 			<form class="form-horizontal">
-				<div class="form-group">
-					<label class="col-md-2 control-label">Name</label>
-					<div class="col-md-10">
-						<input class="form-control" id="name" type="text" value="<%= current_user.section.name %>" readonly="readonly">
+				<div class="well">
+					<div class="row">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="name" type="text" value="<%= current_user.section.name %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Level</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="level" type="text" value="<%= current_user.section.level %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Room Number</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="room_no" type="text" value="<%= current_user.section.room_number %>" readonly="readonly">
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Level</label>
-					<div class="col-md-10">
-						<input class="form-control" id="level" type="text" value="<%= current_user.section.level %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Room Number</label>
-					<div class="col-md-10">
-						<input class="form-control" id="room_no" type="text" value="<%= current_user.section.room_number %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Adviser</label>
-					<div class="col-md-10">
-						<input class="form-control" id="room_no" type="text" value="<%= current_user.fname %> <%= current_user.lname %>"readonly="readonly">
-					</div>
-				</div>
-			</form>
-			<br><br>
+			</form><br>
 			<p class="text-center"><strong>Students Enrolled</strong></p>
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-sm-3">
 					<%= form_tag "/teachers/class/find" do %>
 					  	<div class="input-group">
 						    <%= text_field_tag :search_string, params[:search], class: "form-control" %>
@@ -48,24 +45,20 @@
 			<div class="table-responsive">
 				<table class="table table-default table-hover">
 					<thead>
-						<th class="col-md-1">ID</th>
-						<th class="col-md-3" colspan="3">Name</th>
-						<th class="col-md-1">Sex</th>
-						<th class="col-md-3">Address</th>
-						<th class="col-md-2">Birthdate</th>
-						<th class="col-md-1">Age</th>
-						<th class="col-md-1" colspan="3">Options</th>
+						<th class="col-sm-3	">ID</th>
+						<th class="col-sm-2">First Name</th>
+						<th class="col-sm-2">Middle Name</th>
+						<th class="col-sm-2">Last Name</th>
+						<th class="col-sm-2">Sex</th>
+						<th class="col-sm-1" colspan="3">Options</th>
 					<tbody>
 						<% @students.each do |student| %>
 							<tr>
 								<td style="text-align: center"><%= student.student_id %></td>
-								<td><%= student.fname %></td>
-								<td><%= student.mname %></td>
-								<td><%= student.lname %></td>
+								<td style="text-align: center"><%= student.fname %></td>
+								<td style="text-align: center"><%= student.mname %></td>
+								<td style="text-align: center"><%= student.lname %></td>
 								<td style="text-align: center"><%= student.sex %></td>
-								<td><%= student.address %></td>
-								<td style="text-align: center"><%= student.birthdate %></td>
-								<td style="text-align: center"><%= student.age %></td>
 								<td style="text-align: center">
 									<a href="/teachers/class/student/<%= student.id %>">
 										<span class="glyphicon glyphicon-eye-open"></span>
@@ -84,8 +77,8 @@
 			<% if controller.action_name == "find" %>
 				<br><br>
 				<div class="row">
-					<div class="col-md-4 col-md-offset-4">
-						<button type="button" class="btn btn-default btn-block"><%= link_to 'Back', "/teachers/class" %></button>
+					<div class="col-sm-4 col-sm-offset-4">
+						<%= button_to('Back', "/teachers/class", {method: 'get', :class => 'btn btn-large btn-primary btn-block'}) %>
 					</div>
 				</div>
 			<% end %>

@@ -1,33 +1,48 @@
-<div class="col-md-10 col-md-offset-2 main">
-	<h3 class="page-header">Teacher</h3>
-	<div class="row">
-		<div class="well">
+<div class="col-sm-10 col-sm-offset-2 main">
+	<h3>Teacher</h3>
+	<div class="panel panel-default">
+		<div class="panel-body">
 			<form class="form-horizontal">
-				<div class="form-group">
-					<label class="col-md-2 control-label">Name</label>
-					<div class="col-md-3">
-						<input class="form-control" id="fname" type="text" value="<%= @teacher.fname %>" readonly="readonly">
+				<div class="well">
+					<div class="row">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Employee ID</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="employee_id" type="text" value="<%= @teacher.employee_id %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Username</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="username" type="text" value="<%= @teacher.username %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-3">
+								<input class="form-control" id="fname" type="text" value="<%= @teacher.fname %>" readonly="readonly">
+							</div>
+							<div class="col-sm-3">
+								<input class="form-control" id="mname" type="text" value="<%= @teacher.mname %>" readonly="readonly">
+							</div>
+							<div class="col-sm-3">
+								<input class="form-control" id="lname" type="text" value="<%= @teacher.lname %>" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Section Handled</label>
+							<div class="col-sm-9">
+								<input class="form-control" id="sex" type="text" value="<%= @teacher.section.name %>" readonly="readonly">
+							</div>
+						</div>
 					</div>
-					<div class="col-md-3">
-						<input class="form-control" id="mname" type="text" value="<%= @teacher.mname %>" readonly="readonly">
-					</div>
-					<div class="col-md-3">
-						<input class="form-control" id="lname" type="text" value="<%= @teacher.lname %>" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-2 control-label">Section Handled</label>
-					<div class="col-md-9">
-						<input class="form-control" id="sex" type="text" value="<%= @teacher.section.name %>" readonly="readonly">
-					</div>
-				</div>
-				<br><br>
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4">
-						<button type="button" class="btn btn-default btn-block"><%= link_to 'Back', "/admin/teachers" %></button>
-					</div>
-				</div>
+				</div><br>
 			</form>
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-4">
+					<%= button_to('Back', "/admin/teachers", {method: 'get', :class => 'btn btn-large btn-primary btn-block'}) %>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

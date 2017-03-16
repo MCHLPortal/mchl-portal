@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 .navbar {
 	height: 40px;
 }
@@ -22,11 +24,12 @@
 #navbar .logout {
 	line-height: 20px;
 	color: #FFFFFF;
-	font-size: 12px;
 }
 
 body {
 	padding-top: 60px;
+	background-color: #ECF0F5;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 /*
@@ -132,7 +135,7 @@ li img {
 }
 
 .table .disable {
-	background-color: #555555;
+	background-color: #222D32;
 }
 
 img {
@@ -161,6 +164,7 @@ img {
 
 .report_card {
 	border-top: none;
+	background-color: white;
 }
 
 .panel-body {

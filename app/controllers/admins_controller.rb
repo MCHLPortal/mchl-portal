@@ -21,11 +21,13 @@ class AdminsController < ApplicationController
 		@student = Student.new
 
 		@student.student_id = params[:student][:student_id]
-		@student.username = params[:student][:username]
-		@student.password = params[:student][:password]
 		@student.fname = params[:student][:fname]
 		@student.mname = params[:student][:mname]
 		@student.lname = params[:student][:lname]
+		@username = params[:student][:lname].downcase + "_" + params[:student][:fname][0..2].downcase + params[:student][:mname][0].downcase
+		@password = params[:student][:student_id] + params[:student][:lname].downcase
+		@student.username = @username
+		@student.password = @password
 		@student.sex = params[:student][:sex]
 		@student.birthdate = DateTime.strptime(params[:student][:birthdate], '%m/%d/%Y').to_date
 		now = Time.now.utc.to_date
@@ -46,7 +48,7 @@ class AdminsController < ApplicationController
 		@student.mother_occupation = params[:student][:mother_occupation]
 		@student.mother_age = params[:student][:mother_age]
 		@student.mother_educ_attainment = params[:student][:mother_educ_attainment]
-		@student.sections_id = params[:student][:sections_id]
+		@student.section_id = params[:student][:section_id]
 		@student.save
 
 		redirect_to "/admin/students/#{@student.id}"
@@ -65,11 +67,13 @@ class AdminsController < ApplicationController
 		@student = Student.find(params[:id])
 
 		@student.update_attributes(:student_id => params[:student][:student_id])
-		@student.update_attributes(:username => params[:student][:username])
-		@student.update_attributes(:password => params[:student][:password])
 		@student.update_attributes(:fname => params[:student][:fname])
 		@student.update_attributes(:mname => params[:student][:mname])
 		@student.update_attributes(:lname => params[:student][:lname])
+		@username = params[:student][:lname].downcase + "_" + params[:student][:fname][0..2].downcase + params[:student][:mname][0].downcase
+		@password = params[:student][:student_id] + params[:student][:lname].downcase
+		@student.update_attributes(:username => @username)
+		@student.update_attributes(:password => @password)
 		@student.update_attributes(:sex => params[:student][:sex])
 		@student.update_attributes(:birthdate => DateTime.strptime(params[:student][:birthdate], '%m/%d/%Y').to_date)
 		birthdate = DateTime.strptime(params[:student][:birthdate], '%m/%d/%Y').to_date
@@ -90,7 +94,7 @@ class AdminsController < ApplicationController
 		@student.update_attributes(:mother_occupation => params[:student][:mother_occupation])
 		@student.update_attributes(:mother_age => params[:student][:mother_age])
 		@student.update_attributes(:mother_educ_attainment => params[:student][:mother_educ_attainment])
-		@student.update_attributes(:sections_id => params[:student][:sections_id])
+		@student.update_attributes(:section_id => params[:student][:section_id])
 
 		redirect_to "/admin/students/#{@student.id}"
 	end
@@ -122,13 +126,15 @@ class AdminsController < ApplicationController
 		@teacher = Employee.new
 
 		@teacher.employee_id = params[:employee][:employee_id]
-		@teacher.username = params[:employee][:username]
-		@teacher.password = params[:employee][:password]
 		@teacher.admin = false;
 		@teacher.fname = params[:employee][:fname]
 		@teacher.mname = params[:employee][:mname]
 		@teacher.lname = params[:employee][:lname]
-		@teacher.sections_id = params[:employee][:sections_id]
+		@username = "e" + params[:employee][:lname].downcase + "_" + params[:employee][:fname][0..2].downcase + params[:employee][:mname][0].downcase
+		@password = params[:employee][:employee_id] + params[:employee][:lname].downcase
+		@teacher.username = @username
+		@teacher.password = @password
+		@teacher.section_id = params[:employee][:section_id]
 		@teacher.save
 
 		redirect_to "/admin/teachers/#{@teacher.id}"
@@ -147,13 +153,15 @@ class AdminsController < ApplicationController
 		@teacher = Employee.find(params[:id])
 
 		@teacher.update_attributes(:employee_id => params[:employee][:employee_id])
-		@teacher.update_attributes(:username => params[:employee][:username])
-		@teacher.update_attributes(:password => params[:employee][:password])
 		@teacher.update_attributes(:admin => false);
 		@teacher.update_attributes(:fname => params[:employee][:fname])
 		@teacher.update_attributes(:mname => params[:employee][:mname])
 		@teacher.update_attributes(:lname => params[:employee][:lname])
-		@teacher.update_attributes(:sections_id => params[:employee][:sections_id])
+		@username = "e" + params[:employee][:lname].downcase + "_" + params[:employee][:fname][0..2].downcase + params[:employee][:mname][0].downcase
+		@password = params[:employee][:employee_id] + params[:employee][:lname].downcase
+		@teacher.update_attributes(:username => @username)
+		@teacher.update_attributes(:password => @password)
+		@teacher.update_attributes(:section_id => params[:employee][:section_id])
 
 		redirect_to "/admin/teachers/#{@teacher.id}"
 	end
