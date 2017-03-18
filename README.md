@@ -1,6 +1,6 @@
 # mchl-portal
-Members:
+Members    :
 * Closa, Antonio B.
-* Concina, Jonas P. - [Active]
+* Concina, Jonas P.
 * Moreno, Monette Pearl I.
 * Rabago, Helimar M.
