@@ -32,7 +32,7 @@
 								<td style="text-align: center"><%= section.name %></td>
 								<td style="text-align: center"><%= section.level %></td>
 								<td style="text-align: center"><%= section.room_number %></td>
-								<td style="text-align: center"><%= section.employee.lname %></td>
+								<td style="text-align: center"><%= section.try(:employee).try(:lname) %></td>
 								<td style="text-align: center">
 									<a href="/admin/sections/<%= section.id %>">
 										<span class="glyphicon glyphicon-eye-open"></span>

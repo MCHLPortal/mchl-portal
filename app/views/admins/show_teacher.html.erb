@@ -32,7 +32,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Section Handled</label>
 							<div class="col-sm-9">
-								<input class="form-control" id="sex" type="text" value="<%= @teacher.section.name %>" readonly="readonly">
+								<input class="form-control" id="sex" type="text" value="<%= @teacher.try(:section).try(:name) %>" readonly="readonly">
 							</div>
 						</div>
 					</div>
