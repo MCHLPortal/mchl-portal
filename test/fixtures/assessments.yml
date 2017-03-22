@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tuition: 9.99
+  other_fees: 9.99
+  other_assessment: 9.99
+  total_assessment: 9.99
+  student_id: 1
+
+two:
+  tuition: 9.99
+  other_fees: 9.99
+  other_assessment: 9.99
+  total_assessment: 9.99
+  student_id: 1
