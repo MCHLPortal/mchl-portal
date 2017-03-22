@@ -27,7 +27,7 @@
 						<th class="col-sm-2">Birthdate</th>
 						<th class="col-sm-1">Age</th>
 						<th class="col-sm-2">Section</th>
-						<th class="col-sm-1" colspan="3">Options</th>
+						<th class="col-sm-1" colspan="4">Options</th>
 					</thead>
 					<tbody>
 						<% @students.each do |student| %>
@@ -54,6 +54,11 @@
 								<td style="text-align: center">
 									<a href="/admin/students/<%= student.id %>/delete">
 										<span class="glyphicon glyphicon-remove"></span>
+									</a>
+								</td>
+								<td style="text-align: center">
+									<a href="/admin/students/<%= student.id %>/payments">
+										<span class="glyphicon glyphicon-usd"></span>
 									</a>
 								</td>
 							</tr>

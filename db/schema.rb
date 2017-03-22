@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20170321110701) do
     t.integer  "evaluation_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+
+ActiveRecord::Schema.define(version: 20170322075807) do
+
+  create_table "assessments", force: :cascade do |t|
+    t.decimal  "tuition"
+    t.decimal  "other_fees"
+    t.decimal  "other_assessment"
+    t.decimal  "total_assessment"
+    t.string   "level"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "employees", force: :cascade do |t|
@@ -44,6 +55,16 @@ ActiveRecord::Schema.define(version: 20170321110701) do
     t.integer  "student_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+
+  create_table "payments", force: :cascade do |t|
+    t.date     "date"
+    t.decimal  "amount"
+    t.string   "method"
+    t.decimal  "balance"
+    t.integer  "student_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "assessment_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -90,6 +111,7 @@ ActiveRecord::Schema.define(version: 20170321110701) do
     t.datetime "updated_at",                       null: false
     t.integer  "age"
     t.integer  "section_id"
+    t.integer  "assessment_id"
     t.index ["section_id"], name: "index_students_on_section_id"
   end
 

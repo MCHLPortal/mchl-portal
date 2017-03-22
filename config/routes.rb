@@ -33,6 +33,10 @@ Rails.application.routes.draw do
   get '/admin/students/:id/update' => 'admins#edit_student'
   patch '/admin/students/:id/update' => 'admins#update_student'
   get '/admin/students/:id/delete' => 'admins#delete_student'
+  get '/admin/students/:id/payments' => 'admins#payments'
+  get '/admin/students/:id/payments/new' => 'admins#new_payment'
+  post 'payments' => 'admins#create_payment'
+  get '/admin/students/:id/payments/:id/delete' => 'admins#delete_payment'
 
   get '/admin/teachers' => 'admins#teachers'
   get 'admins/show_teacher' => 'admins#show_teacher', :as => :show_teacher
@@ -52,7 +56,11 @@ Rails.application.routes.draw do
   post '/admin/sections/find' => 'admins#find_section'
   get '/admin/sections/:id/update' => 'admins#edit_section'
   get '/admin/sections/:id/delete' => 'admins#delete_section'
-
+  
+  get 'admin/assessments' => 'admins#assessments'
+  get '/admin/assessments/:id/update' => 'admins#edit_assessment'
+  patch '/admin/assessments/:id/update' => 'admins#update_assessment'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

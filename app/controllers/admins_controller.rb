@@ -49,6 +49,7 @@ class AdminsController < ApplicationController
 		@student.mother_age = params[:student][:mother_age]
 		@student.mother_educ_attainment = params[:student][:mother_educ_attainment]
 		@student.section_id = params[:student][:section_id]
+		@student.assessment_id = Assessment.where(:level => Section.where(:id => params[:student][:section_id]).first.level).first.id
 		@student.save
 
 		@evaluations = []
@@ -334,5 +335,62 @@ class AdminsController < ApplicationController
 		@section.destroy
 
 		redirect_to "/admin/sections"
+	end
+	
+	def payments
+		@payments = Payment.where(:student_id => params[:id])
+	end
+
+	def new_payment
+		@payment  = Payment.new		
+	end
+
+	def create_payment
+		@payment = Payment.new
+
+		@student = Student.find(params[:id])
+		@count = @student.payments.count
+		@balance = 0
+		
+		if (@count == 0)
+			@balance = Assessment.find(@student.assessment_id).total_assessment
+		else
+			@balance = @student.payments.last.balance
+		end
+		
+		@payment.student_id = @student.id
+		@payment.date = DateTime.strptime(params[:payment][:date], '%m/%d/%Y').to_date
+		@payment.amount = params[:payment][:amount]
+		@payment.balance = @balance - params[:payment][:amount].to_f
+		@payment.save
+
+		redirect_to "/admin/students/#{@student.id}/payments"
+	end
+
+	def delete_payment
+		@payment = Payment.find(params[:id])
+		@payment.destroy
+
+		redirect_to "/admin/students/#{@payment.student_id}/payments"
+	end
+		
+	def assessments
+		@assessments = Assessment.all
+	end
+	
+	def edit_assessment
+		@assessment = Assessment.find(params[:id])
+	end
+
+	def update_assessment
+		@assessment = Assessment.find(params[:id])
+
+		@assessment.update_attributes(:tuition => params[:assessment][:tuition])
+		@assessment.update_attributes(:other_fees => params[:assessment][:other_fees])
+		@assessment.update_attributes(:other_assessment => params[:assessment][:other_assessment])
+		@total_assessment = params[:assessment][:tuition].to_f + params[:assessment][:other_fees].to_f + params[:assessment][:other_assessment].to_f
+		@assessment.update_attributes(:total_assessment => @total_assessment)
+		
+		redirect_to "/admin/assessments"
 	end
 end
