@@ -15,4 +15,12 @@ class TeachersController < ApplicationController
 	def show_student
 		@student = Student.find(params[:id])
 	end
+
+	def edit_report_card
+		@evaluation = Evaluation.where(student_id: params[:id]).first
+		@domains = @evaluation.domains
+	end
+
+	def update_report_card
+	end
 end

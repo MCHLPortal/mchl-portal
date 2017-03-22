@@ -36,14 +36,14 @@
 								<td style="text-align: center"><%= teacher.try(:section).try(:name) %></td>
 								<td style="text-align: center"><%= teacher.try(:section).try(:level) %></td>
 								<td style="text-align: center">
-									<a href="/admin/teachers/<%= teacher.id %>">
+									<%= link_to show_teacher_path(:id => teacher.id), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#show_teacher'} do %>
 										<span class="glyphicon glyphicon-eye-open"></span>
-									</a>
+									<% end %>
 								</td>
 								<td style="text-align: center">
-									<a href="/admin/teachers/<%= teacher.id %>/update">
+									<%= link_to edit_teacher_path(:id => teacher.id), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#edit_teacher'} do %>
 										<span class="glyphicon glyphicon-pencil"></span>
-									</a>
+									<% end %>
 								</td>
 								<td style="text-align: center">
 									<a href="/admin/teachers/<%= teacher.id %>/delete">
@@ -58,7 +58,7 @@
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-4">
 					<% if controller.action_name == "teachers" %>
-						<%= button_to('Add Teacher', "/admin/teachers/new", {method: 'get', :class => 'btn btn-large btn-primary btn-block'}) %>
+						<%= button_to('Add Section', new_teacher_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#new_teacher', method: 'get', :class => 'btn btn-large btn-primary btn-block'}) %>
 					<% elsif controller.action_name == "find_teacher" %>
 						<%= button_to('Back', "/admin/teachers", {method: 'get', :class => 'btn btn-large btn-primary btn-block'}) %>
 					<% end %>
@@ -67,3 +67,6 @@
 		</div>
 	</div>
 </div>
+<div id="new_teacher" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div id="show_teacher" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div id="edit_teacher" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

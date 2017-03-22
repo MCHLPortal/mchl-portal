@@ -1,0 +1,4 @@
+$(document).ready( function() {
+	$("#new_section").html("<%= escape_javascript(render 'admins/new_section') %>");
+	$('#new_section').modal('show');
+});

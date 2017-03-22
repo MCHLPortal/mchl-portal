@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315125731) do
+ActiveRecord::Schema.define(version: 20170321110701) do
+
+  create_table "domains", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "raw_score"
+    t.integer  "scaled_score"
+    t.integer  "evaluation_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string   "fname"
@@ -26,12 +35,32 @@ ActiveRecord::Schema.define(version: 20170315125731) do
     t.index ["section_id"], name: "index_employees_on_section_id"
   end
 
+  create_table "evaluations", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "age"
+    t.integer  "sum_scaled_scores"
+    t.integer  "standard_score"
+    t.text     "interpretation"
+    t.integer  "student_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "sections", force: :cascade do |t|
     t.string   "name"
     t.string   "level"
     t.string   "room_number"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.integer  "skill_id"
+    t.boolean  "presence"
+    t.text     "comment"
+    t.integer  "domain_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|

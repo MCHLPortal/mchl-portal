@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  raw_score: 1
+  scaled_score: 1
+  evaluation_id: 1
+
+two:
+  raw_score: 1
+  scaled_score: 1
+  evaluation_id: 1

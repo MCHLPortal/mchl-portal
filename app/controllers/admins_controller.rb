@@ -51,6 +51,85 @@ class AdminsController < ApplicationController
 		@student.section_id = params[:student][:section_id]
 		@student.save
 
+		@evaluations = []
+		@domains = []
+		@skills = []
+
+		3.times do |i|
+			@evaluations << Evaluation.new(student_id: @student.id)
+		end
+
+		Evaluation.import @evaluations
+
+		@eval_id = Evaluation.maximum(:id) - 2
+		@dom_names = ["Gross Motor", "Fine Motor", "Self-Help", "Receptive Language", "Expressive Language", "Cognitive", "Social-Emotional"]
+
+		3.times do |i|
+			7.times do |j|
+				@domains << Domain.new(name: @dom_names[j], evaluation_id: @eval_id)
+			end
+
+			@eval_id += 1
+		end
+
+		Domain.import @domains
+
+		@dom_id = Domain.maximum(:id) - 20
+		@skill_id = 1
+
+		3.times do |i|
+			7.times do |j|
+				if (j == 0)
+					13.times do |k|
+						@skills << Skill.new(skill_id: @skill_id, domain_id: @dom_id)
+
+						@skill_id += 1
+					end
+				elsif (j == 1)
+					9.times do |k|
+						@skills << Skill.new(skill_id: @skill_id, domain_id: @dom_id)
+
+						@skill_id += 1
+					end
+				elsif (j == 2)
+					26.times do |k|
+						@skills << Skill.new(skill_id: @skill_id, domain_id: @dom_id)
+
+						@skill_id += 1
+					end
+				elsif (j == 3)
+					5.times do |k|
+						@skills << Skill.new(skill_id: @skill_id, domain_id: @dom_id)
+
+						@skill_id += 1
+					end
+				elsif (j == 4)
+					8.times do |k|
+						@skills << Skill.new(skill_id: @skill_id, domain_id: @dom_id)
+
+						@skill_id += 1
+					end
+				elsif (j == 5)
+					21.times do |k|
+						@skills << Skill.new(skill_id: @skill_id, domain_id: @dom_id)
+
+						@skill_id += 1
+					end
+				elsif (j == 6)
+					24.times do |k|
+						@skills << Skill.new(skill_id: @skill_id, domain_id: @dom_id)
+
+						@skill_id += 1
+					end
+				end
+
+				@dom_id += 1
+				@skill_id = 1
+			end
+		end
+
+		Skill.import @skills
+
 		redirect_to "/admin/students/#{@student.id}"
 	end
 
@@ -120,10 +199,18 @@ class AdminsController < ApplicationController
 	def new_teacher
 		@teacher = Employee.new
 		@sections = Section.all.map{|s| [s.name, s.id]}
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def create_teacher
 		@teacher = Employee.new
+		@prev = Employee.find_by_section_id(params[:employee][:section_id])
+		if @prev
+			@prev.update_attributes(:section_id => 0)
+		end
 
 		@teacher.employee_id = params[:employee][:employee_id]
 		@teacher.admin = false;
@@ -137,20 +224,33 @@ class AdminsController < ApplicationController
 		@teacher.section_id = params[:employee][:section_id]
 		@teacher.save
 
-		redirect_to "/admin/teachers/#{@teacher.id}"
+		redirect_to "/admin/teachers"
 	end
 
 	def show_teacher
 		@teacher = Employee.find(params[:id])
+		@students = Section.find(@teacher.section_id).students
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def edit_teacher
 		@teacher = Employee.find(params[:id])
 		@sections = Section.all.map{|s| [s.name, s.id]}
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def update_teacher
 		@teacher = Employee.find(params[:id])
+		@prev = Employee.find_by_section_id(params[:employee][:section_id])
+		if @prev
+			@prev.update_attributes(:section_id => 0)
+		end
 
 		@teacher.update_attributes(:employee_id => params[:employee][:employee_id])
 		@teacher.update_attributes(:admin => false);
@@ -163,7 +263,7 @@ class AdminsController < ApplicationController
 		@teacher.update_attributes(:password => @password)
 		@teacher.update_attributes(:section_id => params[:employee][:section_id])
 
-		redirect_to "/admin/teachers/#{@teacher.id}"
+		redirect_to "/admin/teachers"
 	end
 
 	def delete_teacher
@@ -185,6 +285,10 @@ class AdminsController < ApplicationController
 
 	def new_section
 		@section = Section.new
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def create_section
@@ -200,10 +304,19 @@ class AdminsController < ApplicationController
 
 	def show_section
 		@section = Section.find(params[:id])
+		@students = @section.students
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def edit_section
 		@section = Section.find(params[:id])
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def update_section
@@ -213,7 +326,7 @@ class AdminsController < ApplicationController
 		@section.update_attributes(:level => params[:section][:level])
 		@section.update_attributes(:room_number => params[:section][:room_number])
 
-		redirect_to "/admin/sections/#{@section.id}"
+		redirect_to "/admin/sections"
 	end
 
 	def delete_section

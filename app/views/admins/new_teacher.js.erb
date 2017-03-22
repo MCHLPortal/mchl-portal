@@ -1,0 +1,4 @@
+$(document).ready( function() {
+	$("#new_teacher").html("<%= escape_javascript(render 'admins/new_teacher') %>");
+	$('#new_teacher').modal('show');
+});

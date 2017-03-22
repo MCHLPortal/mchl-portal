@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get '/teachers/class' => 'teachers#show_class'
   post '/teachers/class/find' => 'teachers#find'
   get '/teachers/class/student/:id' => 'teachers#show_student'
+  get '/teachers/class/student/:id/report_card/update' => 'teachers#edit_report_card'
+  patch '/teachers/class/student/:id/report_card/update' => 'teachers#update_report_card'
 
   get '/admin/home' => 'admins#home'
   get '/admin/students' => 'admins#students'
@@ -33,21 +35,22 @@ Rails.application.routes.draw do
   get '/admin/students/:id/delete' => 'admins#delete_student'
 
   get '/admin/teachers' => 'admins#teachers'
-  get '/admin/teachers/new' => 'admins#new_teacher'
+  get 'admins/show_teacher' => 'admins#show_teacher', :as => :show_teacher
+  get 'admins/new_teacher' => 'admins#new_teacher', :as => :new_teacher
   post '/teachers' => 'admins#create_teacher'
+  get 'admins/edit_teacher' => 'admins#edit_teacher', :as => :edit_teacher
+  patch 'admins/update_teacher' => 'admins#update_teacher', :as => :update_teacher
   post '/admin/teachers/find' => 'admins#find_teacher'
-  get '/admin/teachers/:id' => 'admins#show_teacher'
-  get '/admin/teachers/:id/update' => 'admins#edit_teacher'
-  patch '/admin/teachers/:id/update' => 'admins#update_teacher'
   get '/admin/teachers/:id/delete' => 'admins#delete_teacher'
 
   get 'admin/sections' => 'admins#sections'
-  get 'admin/sections/new' => 'admins#new_section'
-  post 'sections' => 'admins#create_section'
+  get 'admins/show_section' => 'admins#show_section', :as => :show_section
+  get 'admins/new_section' => 'admins#new_section', :as => :new_section
+  post '/sections' => 'admins#create_section'
+  get 'admins/edit_section' => 'admins#edit_section', :as => :edit_section
+  patch 'admins/update_section' => 'admins#update_section', :as => :update_section
   post '/admin/sections/find' => 'admins#find_section'
-  get '/admin/sections/:id' => 'admins#show_section'
   get '/admin/sections/:id/update' => 'admins#edit_section'
-  patch '/admin/sections/:id/update' => 'admins#update_section'
   get '/admin/sections/:id/delete' => 'admins#delete_section'
 
   # The priority is based upon order of creation: first created -> highest priority.
