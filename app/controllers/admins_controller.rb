@@ -264,7 +264,7 @@ class AdminsController < ApplicationController
 	def update_teacher
 		@teacher = Employee.find(params[:id])
 		@prev = Employee.find_by_section_id(params[:employee][:section_id])
-		if @prev
+		if @prev && @prev.id != @teacher.id
 			@prev.update_attributes(:section_id => 0)
 		end
 

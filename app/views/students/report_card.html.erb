@@ -24,17 +24,17 @@
 							<th colspan="2">3rd Evaluation Date</th>
 						</tr>
 						<tr>
-							<th colspan="2">__/__/__</th>
-							<th colspan="2">__/__/__</th>
-							<th colspan="2">__/__/__</th>
+							<th colspan="2"><%= @evaluations.first.date.strftime("%m/%d/%Y") %></th>
+							<th colspan="2"><%= @evaluations.second.date %></th>
+							<th colspan="2"><%= @evaluations.third.date %></th>
 						</tr>
 						<tr>
 							<th>Age</th>
-							<th></th>
+							<th><%= @evaluations.first.age %></th>
 							<th>Age</th>
-							<th></th>
+							<th><%= @evaluations.second.age %></th>
 							<th>Age</th>
-							<th></th>
+							<th><%= @evaluations.third.age %></th>
 						</tr>
 						<tr>
 							<th>Raw Score</th>
@@ -48,66 +48,66 @@
 					<tbody>
 						<tr>
 							<td>Gross Motor</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td style="text-align: center"><%= @evaluations.first.domains.first.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.second.domains.first.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.third.domains.first.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
 						</tr>
 						<tr>
 							<td>Fine Motor</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td style="text-align: center"><%= @evaluations.first.domains.second.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.second.domains.second.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.third.domains.second.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
 						</tr>
 						<tr>
 							<td>Self-Help</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td style="text-align: center"><%= @evaluations.first.domains.third.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.second.domains.third.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.third.domains.third.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
 						</tr>
 						<tr>
 							<td>Receptive Language</td>
-							<td></td>
-							<td></td>
-							<td></td>	
-							<td></td>
-							<td></td>
-							<td></td>
+							<td style="text-align: center"><%= @evaluations.first.domains.fourth.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.second.domains.fourth.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.third.domains.fourth.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
 						</tr>
 						<tr>
 							<td>Expressive Language</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td style="text-align: center"><%= @evaluations.first.domains.fifth.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.second.domains.fifth.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.third.domains.fifth.skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
 						</tr>
 						<tr>
 							<td>Cognitive</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td style="text-align: center"><%= @evaluations.first.domains[5].skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.second.domains[5].skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.third.domains[5].skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
 						</tr>
 						<tr>
 							<td>Socio-Emotional</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td style="text-align: center"><%= @evaluations.first.domains[6].skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.second.domains[6].skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
+							<td style="text-align: center"><%= @evaluations.third.domains[6].skills.where(:presence => true).count %></td>
+							<td style="text-align: center"></td>
 						</tr>
 						<tr>
 							<th>Sum of Scaled Scores</th>
