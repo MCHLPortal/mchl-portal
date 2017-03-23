@@ -53,7 +53,7 @@ class AdminsController < ApplicationController
 		@student.mother_age = params[:student][:mother_age]
 		@student.mother_educ_attainment = params[:student][:mother_educ_attainment]
 		@student.section_id = params[:student][:section_id]
-		@student.assessment_id = Assessment.where(:level => Section.where(:id => params[:student][:section_id]).first.level).first.id
+		@student.assessment_id = Assessment.where(:level => Section.where(:id => params[:student][:section_id]).first.try(:level)).first.try(:id)
 		@student.save
 
 		@evaluations = []
@@ -187,7 +187,7 @@ class AdminsController < ApplicationController
 		@student.update_attributes(:mother_age => params[:student][:mother_age])
 		@student.update_attributes(:mother_educ_attainment => params[:student][:mother_educ_attainment])
 		@student.update_attributes(:section_id => params[:student][:section_id])
-		@student.update_attributes(:assessment_id => Assessment.where(:level => Section.where(:id => params[:student][:section_id]).first.level).first.id)
+		@student.update_attributes(:assessment_id => Assessment.where(:level => Section.where(:id => params[:student][:section_id]).first.try(:level)).first.try(:id))
 
 		redirect_to "/admin/students"
 	end
