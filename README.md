@@ -7,8 +7,9 @@ MCHLPortal is a web information system created for the preschool department of M
 1. Make sure to run `rake db:seed` to insert the admin account and the default values for the assessment table.
    * The username and password for the admin account are **efernandez_jusa** and **e20140287fernandez**, respectively.
 2. When creating a new student/teacher record:
-   * The username follows the format **last name (without any space) + underscore + first three letters of first name + first letter of middle name** such that **Jonas P. Concina**'s username is **concina_jonp**.
-   * The password follows the format **ID number + last name (without any space)** prefixed by **e** if the account is a teacher and **s** if a student such that if **Jonas P. Concina** with the ID number **20140603** is a teacher, then his password is **e20140603concina** while **s20140603concina** if a student.
+   * The ID number follows the format **current year + rails-generated ID (left padded with 0s if below 1000)** prefixed by **s** if a student and **e** if a teacher such that student **Jonas Petallo Concina** enrolled in 2017 with the rails-generated ID of 10 has an ID number **s20170010**.
+   * The username follows the format **last name (without any space) + underscore + first three letters of first name + first letter of middle name** prefixed by **e** only if a teacher such that student **Jonas Petallo Concina**'s username is **concina_jonp** and teacher **Antonio Balido Closa**'s is **eclosa_antb**.
+   * The password follows the format **ID number + last name (without any space)** such that student **Jonas Petallo Concina** with the ID number **s20170010** has **s20170010concina** as his password.
    
 #### Members:
 * Closa, Antonio B.
