@@ -45,12 +45,11 @@
 			<div class="table-responsive">
 				<table class="table table-default table-hover">
 					<thead>
-						<th class="col-sm-3	">ID</th>
-						<th class="col-sm-2">First Name</th>
-						<th class="col-sm-2">Middle Name</th>
-						<th class="col-sm-2">Last Name</th>
-						<th class="col-sm-2">Sex</th>
-						<th class="col-sm-1" colspan="3">Options</th>
+						<th class="col-sm-2">ID</th>
+						<th class="col-sm-3">First Name</th>
+						<th class="col-sm-3">Middle Name</th>
+						<th class="col-sm-3">Last Name</th>
+						<th class="col-sm-1" colspan="4">Options</th>
 					<tbody>
 						<% @students.each do |student| %>
 							<tr>
@@ -58,16 +57,25 @@
 								<td style="text-align: center"><%= student.fname %></td>
 								<td style="text-align: center"><%= student.mname %></td>
 								<td style="text-align: center"><%= student.lname %></td>
-								<td style="text-align: center"><%= student.sex %></td>
 								<td style="text-align: center">
-									<a href="/teachers/class/student/<%= student.id %>">
+									<%= link_to show_student_handled_path(:id => student.id), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#show_student_handled'} do %>
 										<span class="glyphicon glyphicon-eye-open"></span>
-									</a>
+									<% end %>
 								</td>
 								<td style="text-align: center">
-									<a href="/teachers/class/student/<%= student.id %>/report_card/update">
+									<%= link_to edit_report_card_path(:id => student.id, :no => 1), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#edit_report_card'} do %>
 										<span class="glyphicon glyphicon-list-alt"></span>
-									</a>
+									<% end %>
+								</td>
+								<td style="text-align: center">
+									<%= link_to edit_report_card_path(:id => student.id, :no => 2), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#edit_report_card'} do %>
+										<span class="glyphicon glyphicon-list-alt"></span>
+									<% end %>
+								</td>
+								<td style="text-align: center">
+									<%= link_to edit_report_card_path(:id => student.id, :no => 3), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#edit_report_card'} do %>
+										<span class="glyphicon glyphicon-list-alt"></span>
+									<% end %>
 								</td>
 							</tr>
 						<% end %>
@@ -85,3 +93,5 @@
 		</div>
 	</div>
 </div>
+<div id="edit_report_card" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div id="show_student_handled" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

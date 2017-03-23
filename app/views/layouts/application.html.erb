@@ -60,7 +60,9 @@
 								controller.action_name == "show_student" ||
 								controller.action_name == "edit_student" ||
 								controller.action_name == "new_student" ||
-								controller.action_name == "find_student" %>">
+								controller.action_name == "find_student" ||
+								controller.action_name == "payments" ||
+								controller.action_name == "new_payment" %>">
 								<a href="<%= "/admin/students" %>">
 									<span class="glyphicon glyphicon-user"></span>
 									Students
@@ -86,7 +88,8 @@
 									Sections
 								</a>
 							</li>
-							<li>
+							<li class="<%= 'active' if controller.action_name == "assessments" ||
+								controller.action_name == "edit_assessment" %>">
 								<a href="<%= "/admin/assessments" %>">
 									<span class="glyphicon glyphicon-file"></span>
 									Assessment

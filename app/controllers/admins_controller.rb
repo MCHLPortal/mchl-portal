@@ -15,6 +15,10 @@ class AdminsController < ApplicationController
 	def new_student
 		@student  = Student.new
 		@sections = Section.all.map{|s| [s.name, s.id]}
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def create_student
@@ -24,8 +28,8 @@ class AdminsController < ApplicationController
 		@student.fname = params[:student][:fname]
 		@student.mname = params[:student][:mname]
 		@student.lname = params[:student][:lname]
-		@username = params[:student][:lname].downcase + "_" + params[:student][:fname][0..2].downcase + params[:student][:mname][0].downcase
-		@password = params[:student][:student_id] + params[:student][:lname].downcase
+		@username = params[:student][:lname].partition(" ").first.downcase + "_" + params[:student][:fname][0..2].downcase + params[:student][:mname][0].downcase
+		@password = params[:student][:student_id] + params[:student][:lname].partition(" ").first.downcase
 		@student.username = @username
 		@student.password = @password
 		@student.sex = params[:student][:sex]
@@ -131,16 +135,24 @@ class AdminsController < ApplicationController
 
 		Skill.import @skills
 
-		redirect_to "/admin/students/#{@student.id}"
+		redirect_to "/admin/students"
 	end
 
 	def show_student
 		@student = Student.find(params[:id])
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def edit_student
 		@student = Student.find(params[:id])
 		@sections = Section.all.map{|s| [s.name, s.id]}
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def update_student
@@ -150,8 +162,8 @@ class AdminsController < ApplicationController
 		@student.update_attributes(:fname => params[:student][:fname])
 		@student.update_attributes(:mname => params[:student][:mname])
 		@student.update_attributes(:lname => params[:student][:lname])
-		@username = params[:student][:lname].downcase + "_" + params[:student][:fname][0..2].downcase + params[:student][:mname][0].downcase
-		@password = params[:student][:student_id] + params[:student][:lname].downcase
+		@username = params[:student][:lname].partition(" ").first.downcase + "_" + params[:student][:fname][0..2].downcase + params[:student][:mname][0].downcase
+		@password = params[:student][:student_id] + params[:student][:lname].partition(" ").first.downcase
 		@student.update_attributes(:username => @username)
 		@student.update_attributes(:password => @password)
 		@student.update_attributes(:sex => params[:student][:sex])
@@ -175,8 +187,9 @@ class AdminsController < ApplicationController
 		@student.update_attributes(:mother_age => params[:student][:mother_age])
 		@student.update_attributes(:mother_educ_attainment => params[:student][:mother_educ_attainment])
 		@student.update_attributes(:section_id => params[:student][:section_id])
+		@student.update_attributes(:assessment_id => Assessment.where(:level => Section.where(:id => params[:student][:section_id]).first.level).first.id)
 
-		redirect_to "/admin/students/#{@student.id}"
+		redirect_to "/admin/students"
 	end
 
 	def delete_student
@@ -230,7 +243,9 @@ class AdminsController < ApplicationController
 
 	def show_teacher
 		@teacher = Employee.find(params[:id])
-		@students = Section.find(@teacher.section_id).students
+		if @teacher.section_id != 0
+			@students = Section.find(@teacher.section_id).students
+		end
 		respond_to do |format|
 			format.html
 			format.js
@@ -338,11 +353,17 @@ class AdminsController < ApplicationController
 	end
 	
 	def payments
-		@payments = Payment.where(:student_id => params[:id])
+		@student = Student.find(params[:id])
+		@payments = @student.payments
+		@assessment = Assessment.find(@student.assessment_id)
 	end
 
 	def new_payment
-		@payment  = Payment.new		
+		@payment  = Payment.new
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def create_payment
@@ -360,6 +381,7 @@ class AdminsController < ApplicationController
 		
 		@payment.student_id = @student.id
 		@payment.date = DateTime.strptime(params[:payment][:date], '%m/%d/%Y').to_date
+		@payment.method = params[:payment][:method]
 		@payment.amount = params[:payment][:amount]
 		@payment.balance = @balance - params[:payment][:amount].to_f
 		@payment.save
@@ -369,6 +391,13 @@ class AdminsController < ApplicationController
 
 	def delete_payment
 		@payment = Payment.find(params[:id])
+		@next = Payment.where("id > ?", @payment.id)
+
+		@next.each do |n|
+			@new = n.balance + @payment.amount
+			n.update_attributes(:balance => @new)
+		end
+
 		@payment.destroy
 
 		redirect_to "/admin/students/#{@payment.student_id}/payments"
@@ -380,16 +409,32 @@ class AdminsController < ApplicationController
 	
 	def edit_assessment
 		@assessment = Assessment.find(params[:id])
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def update_assessment
 		@assessment = Assessment.find(params[:id])
+		@prev = @assessment.total_assessment
 
 		@assessment.update_attributes(:tuition => params[:assessment][:tuition])
 		@assessment.update_attributes(:other_fees => params[:assessment][:other_fees])
 		@assessment.update_attributes(:other_assessment => params[:assessment][:other_assessment])
 		@total_assessment = params[:assessment][:tuition].to_f + params[:assessment][:other_fees].to_f + params[:assessment][:other_assessment].to_f
 		@assessment.update_attributes(:total_assessment => @total_assessment)
+
+		@subt = @prev - @assessment.total_assessment
+
+		@students = Student.where(:assessment_id => @assessment.id)
+
+		@students.each do |s|
+			s.payments.each do |p|
+				@new = p.balance - @subt
+				p.update_attributes(:balance => @new)
+			end
+		end
 		
 		redirect_to "/admin/assessments"
 	end

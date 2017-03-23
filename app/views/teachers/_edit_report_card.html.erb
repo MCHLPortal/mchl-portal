@@ -1,0 +1,91 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<% if params[:no] == "1" %>
+				<h3 id="myModalLabel">1st Evaluation</h3>
+			<% elsif params[:no] == "2" %>
+				<h3 id="myModalLabel">2nd Evaluation</h3>
+			<% elsif params[:no] == "3" %>
+				<h3 id="myModalLabel">3rd Evaluation</h3>
+			<% end %>
+		</div>
+			<%= form_for(@evaluation, :url => update_report_card_path(:id => params[:id], :no => params[:no]), :html => {:class => "form-horizontal"}) do |f| %>
+			<div class="modal-body">
+				<div class="form-group">
+					<%= f.label :date, "Date", class: "col-sm-2 control-label" %>
+					<div class="col-sm-9">
+						<%= f.text_field :date, :value => if @evaluation.date == nil then Time.now.utc.to_date.strftime("%m/%d/%Y") else @evaluation.date.strftime("%m/%d/%Y") end, class: "form-control", "data-provide" => 'datepicker' %>
+					</div>
+				</div>
+				<ul class="nav nav-tabs nav-justified" style="border: 0px; background-color: white;">
+					<li class="active"><a data-toggle="tab" href="#gross">GMD</a></li>
+					<li><a data-toggle="tab" href="#fine">FMD</a></li>
+					<li><a data-toggle="tab" href="#self-help">SHD</a></li>
+					<li><a data-toggle="tab" href="#receptive">RLD</a></li>
+					<li><a data-toggle="tab" href="#expressive">ELD</a></li>
+					<li><a data-toggle="tab" href="#cognitive">CD</a></li>
+					<li><a data-toggle="tab" href="#social-emotional">SED</a></li>
+				</ul><br>
+				<div class="tab-content">
+					<% @domains.each do |domain| %>
+						<div id="<%= domain.name.partition(" ").first.downcase %>" class="<%= domain.name == "Gross Motor" ? "tab-pane fade in active" : "tab-pane fade" %>">
+							<%= f.fields_for domain do |d| %>
+								<p class="text-center"><strong><%= domain.name %></strong></p><br>
+								<% skills = [] %>
+								<% i = 0 %>
+								<% domain.skills.each do |skill| %>
+									<% if domain.name == "Gross Motor" %>
+										<% File.readlines("public/skills/gmd.txt").map do |line| skills << line end %>
+									<% elsif domain.name == "Fine Motor" %>
+										<% File.readlines("public/skills/fmd.txt").map do |line| skills << line end %>
+									<% elsif domain.name == "Self-Help" %>
+										<% File.readlines("public/skills/shd.txt").map do |line| skills << line end %>
+									<% elsif domain.name == "Receptive Language" %>
+										<% File.readlines("public/skills/rld.txt").map do |line| skills << line end %>
+									<% elsif domain.name == "Expressive Language" %>
+										<% File.readlines("public/skills/eld.txt").map do |line| skills << line end %>
+									<% elsif domain.name == "Cognitive" %>
+										<% File.readlines("public/skills/cd.txt").map do |line| skills << line end %>
+									<% elsif domain.name == "Social-Emotional" %>
+										<% File.readlines("public/skills/sed.txt").map do |line| skills << line end %>
+									<% end %>
+									<%= d.fields_for :skill do |s| %>
+										<div class="form-group">
+											<%= s.label :presence, skills[i], class: "col-sm-5 control-label" %>
+											<div class="col-sm-3" style="text-align: center">
+												<label class="radio-inline">
+													<% if skill.presence == true %>
+														<%= radio_button_tag "#{skill.id}", true, true %> P
+													<% else %>
+														<%= radio_button_tag "#{skill.id}", true %> P
+													<% end %>
+												</label>
+												<label class="radio-inline">
+													<% if skill.presence == false %>
+														<%= radio_button_tag "#{skill.id}", false, true %> NP
+													<% else %>
+														<%= radio_button_tag "#{skill.id}", false %> NP
+													<% end %>
+												</label>
+											</div>
+											<div class="col-sm-4">
+												<%= text_field_tag "comment_#{skill.id}", skill.comment, class: "form-control", placeholder: "Comment" %>
+											</div>
+										</div>
+										<% i += 1 %>
+									<% end %>
+								<% end %>
+							<% end %>
+							</div>
+					<% end %>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="col-sm-6 col-sm-offset-3">
+					<%= f.submit "Update", class: "btn btn-default btn-primary btn-block" %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

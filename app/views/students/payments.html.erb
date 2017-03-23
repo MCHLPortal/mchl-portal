@@ -1,80 +1,67 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	<h3 class="page-header">Payments</h3>
-	<div class="panel-body row">
-		<div class="dSpace" >
-			<h3 class="text-center">
-				<b>Montessori Children's House of Learning</b>
-			</h3>
-			<h4 class="text-center">
-				<b>Statement of Account</b>
-			</h4>
-			<p class="text-center">
-				School Year: __/__/__
-			</p>
-		</div>
-		<div class="col-xs-6">
-			<b>ASSESSMENTS</b>
-			<div class="panel-collapse">
-				<table class="table table-bordered table-hover">
-					<tbody>
-						<tr>
-							<td>Tuition :</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Other Fees :</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Other Assessment :</td>
-							<td></td>
-						</tr>
-						<tr class="active ">
-							<td><b>Total Assessment </b></td>
-							<td>000.0</td>
-						</tr>
-					</tbody>
-				</table>
-				<table class="table table-bordered table-hover">
-					<tbody>
-						<tr>
-							<td>Total Assessment :</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Total Payements :</td>
-							<td></td>
-						</tr>
-						<tr class="active ">
-							<td><b>Total Payable </b></td>
-							<td>000.0</td>
-						</tr>
-					</tbody>
-				</table>
+<div class="col-sm-10 col-sm-offset-2 main">
+	<h3>Payments List</h3>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="form-horizontal">
+				<div class="well">
+					<div class="row">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Tuition</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+									<span class="input-group-addon">P</span>
+									<input class="form-control" id="tuition" type="text" value="<%= @assessment.tuition %>" readonly="readonly">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Other Fees</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+									<span class="input-group-addon">P</span>
+									<input class="form-control" id="other_fees" type="text" value="<%= @assessment.other_fees %>" readonly="readonly">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Other Assessment</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+									<span class="input-group-addon">P</span>
+									<input class="form-control" id="other_assessment" type="text" value="<%= @assessment.other_assessment %>" readonly="readonly">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Total Assessment</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+									<span class="input-group-addon">P</span>
+									<input class="form-control" id="total_assessment" type="text" value="<%= @assessment.total_assessment %>" readonly="readonly">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="col-xs-6">
-			<b>PAYMENTS</b>
-			<div class="panel-collapse">
-				<table class="table table-bordered table-hover">
+			<div class="table-responsive">
+				<table class="table table-default table-hover">
 					<thead>
-						<tr>
-							<th>Date of Payment</th>
-							<th>Mode of Payment</th>
-							<th>Amount</th>
-						</tr>
+						<th class="col-sm-3">Date</th>
+						<th class="col-sm-2">Method</th>
+						<th class="col-sm-3">Amount</th>
+						<th class="col-sm-3">Balance</th>
 					</thead>
 					<tbody>
-						<tr>
-							<td>__/__/__</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr class="active">
-							<td colspan="2"><b>Total Payment:</b></td>
-							<td></td>
-						</tr>
-					</tbody>
+						<% @payments.each do |payment| %>
+							<tr>
+								<td style="text-align: center"><%= payment.date.strftime("%m/%d/%Y") %></td>
+								<td style="text-align: center"><%= payment.method %></td>
+								<td style="text-align: center">P<%= payment.amount %></td>
+								<td style="text-align: center">P<%= payment.balance %></td>
+							</tr>
+						<% end %>
+				  	</tbody>
 				</table>
 			</div>
 		</div>

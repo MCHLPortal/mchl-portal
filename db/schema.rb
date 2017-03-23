@@ -10,16 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321110701) do
-
-  create_table "domains", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "raw_score"
-    t.integer  "scaled_score"
-    t.integer  "evaluation_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-
 ActiveRecord::Schema.define(version: 20170322075807) do
 
   create_table "assessments", force: :cascade do |t|
@@ -30,6 +20,15 @@ ActiveRecord::Schema.define(version: 20170322075807) do
     t.string   "level"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "domains", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "raw_score"
+    t.integer  "scaled_score"
+    t.integer  "evaluation_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "employees", force: :cascade do |t|
@@ -55,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170322075807) do
     t.integer  "student_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
 
   create_table "payments", force: :cascade do |t|
     t.date     "date"
@@ -62,9 +62,8 @@ ActiveRecord::Schema.define(version: 20170322075807) do
     t.string   "method"
     t.decimal  "balance"
     t.integer  "student_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "assessment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sections", force: :cascade do |t|

@@ -20,36 +20,28 @@
 			<div class="table-responsive">
 				<table class="table table-default table-hover">
 					<thead>
-						<th class="col-sm-1">ID</th>
-						<th class="col-sm-1" colspan="3">Name</th>
-						<th class="col-sm-1">Sex</th>
-						<th class="col-sm-3">Address</th>
-						<th class="col-sm-2">Birthdate</th>
-						<th class="col-sm-1">Age</th>
-						<th class="col-sm-2">Section</th>
-						<th class="col-sm-1" colspan="4">Options</th>
+						<th class="col-sm-3">ID</th>
+						<th class="col-sm-4" colspan="3">Name</th>
+						<th class="col-sm-3">Section</th>
+						<th class="col-sm-2" colspan="4">Options</th>
 					</thead>
 					<tbody>
 						<% @students.each do |student| %>
 							<tr>
 								<td style="text-align: center"><%= student.student_id %></td>
-								<td><%= student.fname %></td>
-								<td><%= student.mname %></td>
-								<td><%= student.lname %></td>
-								<td style="text-align: center"><%= student.sex %></td>
-								<td><%= student.address %></td>
-								<td style="text-align: center"><%= student.birthdate %></td>
-								<td style="text-align: center"><%= student.age %></td>
-								<td style="text-align: center"><%= student.section.try(:name) %></td>
+								<td style="text-align: center"><%= student.fname %></td>
+								<td style="text-align: center"><%= student.mname %></td>
+								<td style="text-align: center"><%= student.lname %></td>
+								<td style="text-align: center"><%= student.try(:section).try(:name) %></td>
 								<td style="text-align: center">
-									<a href="/admin/students/<%= student.id %>">
+									<%= link_to show_student_path(:id => student.id), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#show_student'} do %>
 										<span class="glyphicon glyphicon-eye-open"></span>
-									</a>
+									<% end %>
 								</td>
 								<td style="text-align: center">
-									<a href="/admin/students/<%= student.id %>/update">
+									<%= link_to edit_student_path(:id => student.id), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#edit_student'} do %>
 										<span class="glyphicon glyphicon-pencil"></span>
-									</a>
+									<% end %>
 								</td>
 								<td style="text-align: center">
 									<a href="/admin/students/<%= student.id %>/delete">
@@ -69,7 +61,7 @@
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-4">
 					<% if controller.action_name == "students" %>
-						<%= button_to('Add Student', "/admin/students/new", {method: 'get', :class => 'btn btn-large btn-primary btn-block'})  %>
+						<%= button_to('Add Student', new_student_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#new_student', method: 'get', :class => 'btn btn-large btn-primary btn-block'}) %>
 					<% elsif controller.action_name == "find_student" %>
 						<%= button_to('Back', "/admin/students", {method: 'get', :class => 'btn btn-large btn-primary btn-block'})  %>
 					<% end %>
@@ -78,3 +70,6 @@
 		</div>
 	</div>
 </div>
+<div id="new_student" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div id="show_student" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div id="edit_student" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

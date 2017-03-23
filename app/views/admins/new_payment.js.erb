@@ -1,0 +1,4 @@
+$(document).ready( function() {
+	$("#new_payment").html("<%= escape_javascript(render 'admins/new_payment') %>");
+	$('#new_payment').modal('show');
+});

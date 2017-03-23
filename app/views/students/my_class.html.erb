@@ -36,11 +36,10 @@
 			<div class="table-responsive">
 				<table class="table table-default table-hover">
 					<thead>
-						<th class="col-sm-2">ID</th>
+						<th class="col-sm-3">ID</th>
 						<th class="col-sm-3">First Name</th>
 						<th class="col-sm-3">Middle Name</th>
 						<th class="col-sm-3">Last Name</th>
-						<th class="col-sm-2">Sex</th>
 					</thead>
 					<tbody>
 						<% @classmates.each do |classmate| %>
@@ -49,7 +48,6 @@
 								<td style="text-align: center"><%= classmate.fname %></td>
 								<td style="text-align: center"><%= classmate.mname %></td>
 								<td style="text-align: center"><%= classmate.lname %></td>
-								<td style="text-align: center"><%= classmate.sex %></td>
 							</tr>
 						<% end %>
 				  	</tbody>

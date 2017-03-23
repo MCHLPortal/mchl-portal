@@ -1,0 +1,4 @@
+$(document).ready( function() {
+	$("#edit_student").html("<%= escape_javascript(render 'admins/edit_student') %>");
+	$('#edit_student').modal('show');
+});

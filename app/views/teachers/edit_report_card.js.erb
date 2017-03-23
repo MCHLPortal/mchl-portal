@@ -1,0 +1,4 @@
+$(document).ready( function() {
+	$("#edit_report_card").html("<%= escape_javascript(render 'teachers/edit_report_card') %>");
+	$('#edit_report_card').modal('show');
+});

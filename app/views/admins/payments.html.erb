@@ -2,35 +2,64 @@
 	<h3>Payments List</h3>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<div class="row">
-				<div class="col-sm-3">
-					<%= form_tag "/admin/payments/find" do %>
-					  	<div class="input-group">
-						    <%= text_field_tag :search_string, params[:search], class: "form-control" %>
-						    <span class="input-group-btn">
-						    	<%= button_tag(type: "submit", class: "btn btn-default") do %>
-						    		<span class="glyphicon glyphicon-search"></span>
-						    	<% end %>
-						    </span>
-					    </div>
-					<% end %>
+			<div class="form-horizontal">
+				<div class="well">
+					<div class="row">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Tuition</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+									<span class="input-group-addon">P</span>
+									<input class="form-control" id="tuition" type="text" value="<%= @assessment.tuition %>" readonly="readonly">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Other Fees</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+									<span class="input-group-addon">P</span>
+									<input class="form-control" id="other_fees" type="text" value="<%= @assessment.other_fees %>" readonly="readonly">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Other Assessment</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+									<span class="input-group-addon">P</span>
+									<input class="form-control" id="other_assessment" type="text" value="<%= @assessment.other_assessment %>" readonly="readonly">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Total Assessment</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+									<span class="input-group-addon">P</span>
+									<input class="form-control" id="total_assessment" type="text" value="<%= @assessment.total_assessment %>" readonly="readonly">
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<br>
 			<div class="table-responsive">
 				<table class="table table-default table-hover">
 					<thead>
-						<th class="col-sm-1">Date</th>
-						<th class="col-sm-1">Amount</th>
-						<th class="col-sm-1">Balance</th>
-						<th class="col-sm-1" colspan="1">Options</th>
+						<th class="col-sm-2">Date</th>
+						<th class="col-sm-2">Method</th>
+						<th class="col-sm-3">Amount</th>
+						<th class="col-sm-3">Balance</th>
+						<th class="col-sm-2">Options</th>
 					</thead>
 					<tbody>
 						<% @payments.each do |payment| %>
 							<tr>
 								<td style="text-align: center"><%= payment.date.strftime("%m/%d/%Y") %></td>
-								<td style="text-align: center"><%= payment.amount %></td>
-								<td style="text-align: center"><%= payment.balance %></td>
+								<td style="text-align: center"><%= payment.method %></td>
+								<td style="text-align: center">P<%= payment.amount %></td>
+								<td style="text-align: center">P<%= payment.balance %></td>
 								<td style="text-align: center">
 									<a href="/admin/students/<%= params[:id] %>/payments/<%= payment.id %>/delete">
 										<span class="glyphicon glyphicon-remove"></span>
@@ -42,14 +71,14 @@
 				</table>
 			</div><br>
 			<div class="row">
-				<div class="col-sm-4 col-sm-offset-4">
-					<% if controller.action_name == "payments" %>
-						<%= button_to('Add Payment', "/admin/students/#{params[:id]}/payments/new", {method: 'get', :class => 'btn btn-large btn-primary btn-block'})  %>
-					<% elsif controller.action_name == "find_student" %>
-						<%= button_to('Back', "/admin/students/#{params[:id]}/payments", {method: 'get', :class => 'btn btn-large btn-primary btn-block'})  %>
-					<% end %>
+				<div class="col-sm-4 col-sm-offset-2">
+					<%= button_to('Back', "/admin/students", {method: 'get', :class => 'btn btn-large btn-primary btn-block'})  %>
+				</div>
+				<div class="col-sm-4">
+					<%= button_to('Add Payment', new_payment_path(:id => params[:id]), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#new_payment', method: 'get', :class => 'btn btn-large btn-primary btn-block'}) %>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<div id="new_payment" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

@@ -1,17 +1,17 @@
 <div class="col-sm-10 col-sm-offset-2 main">
 	<h3>Report Card</h3>
-	<div class="row placeholders">
-		<div class="col-sm-12 placeholder">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#">Summary</a></li>
-				<li><a href="report_card_gmd">Gross Motor</a></li>
-				<li><a href="report_card_fmd">Fine Motor</a></li>
-				<li><a href="report_card_shd">Self-Help</a></li>
-				<li><a href="report_card_rld">Receptive Language</a></li>
-				<li><a href="report_card_eld">Expressive Language</a></li>
-				<li><a href="report_card_cd">Cognitive</a></li>
-				<li><a href="report_card_sed">Social-Emotional</a></li>
-			</ul>
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#summary">Summary</a></li>
+		<li><a data-toggle="tab" href="#gross">Gross Motor</a></li>
+		<li><a data-toggle="tab" href="#fine">Fine Motor</a></li>
+		<li><a data-toggle="tab" href="#self-help">Self-Help</a></li>
+		<li><a data-toggle="tab" href="#receptive">Receptive Language</a></li>
+		<li><a data-toggle="tab" href="#expressive">Expressive Language</a></li>
+		<li><a data-toggle="tab" href="#cognitive">Cognitive</a></li>
+		<li><a data-toggle="tab" href="#social-emotional">Social-Emotional</a></li>
+	</ul>
+	<div class="tab-content" >
+		<div id="summary" class="tab-pane fade in active">
 			<div class="table-responsive">
 				<table class="table table-bordered table-hover report_card">
 					<thead>
@@ -133,6 +133,258 @@
 		  			</tbody>
 				</table>
 	  		</div>
+		</div>
+		<div id="gross" class="tab-pane fade">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover report_card">
+					<thead>
+						<tr>
+							<th class="col-sm-6">Gross Motor</th>
+							<th class="col-sm-1">Eval 1</th>
+							<th class="col-sm-1">Eval 2</th>
+							<th class="col-sm-1">Eval 3</th>
+							<th class="col-sm-3">Comments</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% skills = [] %>
+						<% i = 0 %>
+						<% File.readlines("public/skills/gmd.txt").map do |line| skills << line end %>
+						<% @domain1 = @evaluations.first.domains.where(:name => "Gross Motor").first %>
+						<% @domain2 = @evaluations.second.domains.where(:name => "Gross Motor").first %>
+						<% @domain3 = @evaluations.third.domains.where(:name => "Gross Motor").first %>
+						<% @skills1 = @domain1.skills %>
+						<% @skills2 = @domain2.skills %>
+						<% @skills3 = @domain3.skills %>
+						<% @skills1.zip(@skills2, @skills3) do |a, b, c| %>
+							<tr>
+								<td><%= skills[i] %></td>
+								<td style="text-align: center"><%= if a.presence != nil then a.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if b.presence != nil then b.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if c.presence != nil then c.presence == true ? "P" : "NP" end %></td>
+								<td></td>
+							</tr>
+							<% i += 1 %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="fine" class="tab-pane fade">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover report_card">
+					<thead>
+						<tr>
+							<th class="col-sm-6">Fine Motor</th>
+							<th class="col-sm-1">Eval 1</th>
+							<th class="col-sm-1">Eval 2</th>
+							<th class="col-sm-1">Eval 3</th>
+							<th class="col-sm-3">Comments</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% skills = [] %>
+						<% i = 0 %>
+						<% File.readlines("public/skills/fmd.txt").map do |line| skills << line end %>
+						<% @domain1 = @evaluations.first.domains.where(:name => "Fine Motor").first %>
+						<% @domain2 = @evaluations.second.domains.where(:name => "Fine Motor").first %>
+						<% @domain3 = @evaluations.third.domains.where(:name => "Fine Motor").first %>
+						<% @skills1 = @domain1.skills %>
+						<% @skills2 = @domain2.skills %>
+						<% @skills3 = @domain3.skills %>
+						<% @skills1.zip(@skills2, @skills3) do |a, b, c| %>
+							<tr>
+								<td><%= skills[i] %></td>
+								<td style="text-align: center"><%= if a.presence != nil then a.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if b.presence != nil then b.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if c.presence != nil then c.presence == true ? "P" : "NP" end %></td>
+								<td></td>
+							</tr>
+							<% i += 1 %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="self-help" class="tab-pane fade">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover report_card">
+					<thead>
+						<tr>
+							<th class="col-sm-6">Self-Help</th>
+							<th class="col-sm-1">Eval 1</th>
+							<th class="col-sm-1">Eval 2</th>
+							<th class="col-sm-1">Eval 3</th>
+							<th class="col-sm-3">Comments</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% skills = [] %>
+						<% i = 0 %>
+						<% File.readlines("public/skills/shd.txt").map do |line| skills << line end %>
+						<% @domain1 = @evaluations.first.domains.where(:name => "Self-Help").first %>
+						<% @domain2 = @evaluations.second.domains.where(:name => "Self-Help").first %>
+						<% @domain3 = @evaluations.third.domains.where(:name => "Self-Help").first %>
+						<% @skills1 = @domain1.skills %>
+						<% @skills2 = @domain2.skills %>
+						<% @skills3 = @domain3.skills %>
+						<% @skills1.zip(@skills2, @skills3) do |a, b, c| %>
+							<tr>
+								<td><%= skills[i] %></td>
+								<td style="text-align: center"><%= if a.presence != nil then a.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if b.presence != nil then b.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if c.presence != nil then c.presence == true ? "P" : "NP" end %></td>
+								<td></td>
+							</tr>
+							<% i += 1 %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="receptive" class="tab-pane fade">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover report_card">
+					<thead>
+						<tr>
+							<th class="col-sm-6">Receptive Language</th>
+							<th class="col-sm-1">Eval 1</th>
+							<th class="col-sm-1">Eval 2</th>
+							<th class="col-sm-1">Eval 3</th>
+							<th class="col-sm-3">Comments</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% skills = [] %>
+						<% i = 0 %>
+						<% File.readlines("public/skills/rld.txt").map do |line| skills << line end %>
+						<% @domain1 = @evaluations.first.domains.where(:name => "Receptive Language").first %>
+						<% @domain2 = @evaluations.second.domains.where(:name => "Receptive Language").first %>
+						<% @domain3 = @evaluations.third.domains.where(:name => "Receptive Language").first %>
+						<% @skills1 = @domain1.skills %>
+						<% @skills2 = @domain2.skills %>
+						<% @skills3 = @domain3.skills %>
+						<% @skills1.zip(@skills2, @skills3) do |a, b, c| %>
+							<tr>
+								<td><%= skills[i] %></td>
+								<td style="text-align: center"><%= if a.presence != nil then a.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if b.presence != nil then b.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if c.presence != nil then c.presence == true ? "P" : "NP" end %></td>
+								<td></td>
+							</tr>
+							<% i += 1 %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="expressive" class="tab-pane fade">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover report_card">
+					<thead>
+						<tr>
+							<th class="col-sm-6">Expressive Language</th>
+							<th class="col-sm-1">Eval 1</th>
+							<th class="col-sm-1">Eval 2</th>
+							<th class="col-sm-1">Eval 3</th>
+							<th class="col-sm-3">Comments</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% skills = [] %>
+						<% i = 0 %>
+						<% File.readlines("public/skills/eld.txt").map do |line| skills << line end %>
+						<% @domain1 = @evaluations.first.domains.where(:name => "Expressive Language").first %>
+						<% @domain2 = @evaluations.second.domains.where(:name => "Expressive Language").first %>
+						<% @domain3 = @evaluations.third.domains.where(:name => "Expressive Language").first %>
+						<% @skills1 = @domain1.skills %>
+						<% @skills2 = @domain2.skills %>
+						<% @skills3 = @domain3.skills %>
+						<% @skills1.zip(@skills2, @skills3) do |a, b, c| %>
+							<tr>
+								<td><%= skills[i] %></td>
+								<td style="text-align: center"><%= if a.presence != nil then a.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if b.presence != nil then b.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if c.presence != nil then c.presence == true ? "P" : "NP" end %></td>
+								<td></td>
+							</tr>
+							<% i += 1 %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="cognitive" class="tab-pane fade">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover report_card">
+					<thead>
+						<tr>
+							<th class="col-sm-6">Cognitive</th>
+							<th class="col-sm-1">Eval 1</th>
+							<th class="col-sm-1">Eval 2</th>
+							<th class="col-sm-1">Eval 3</th>
+							<th class="col-sm-3">Comments</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% skills = [] %>
+						<% i = 0 %>
+						<% File.readlines("public/skills/cd.txt").map do |line| skills << line end %>
+						<% @domain1 = @evaluations.first.domains.where(:name => "Cognitive").first %>
+						<% @domain2 = @evaluations.second.domains.where(:name => "Cognitive").first %>
+						<% @domain3 = @evaluations.third.domains.where(:name => "Cognitive").first %>
+						<% @skills1 = @domain1.skills %>
+						<% @skills2 = @domain2.skills %>
+						<% @skills3 = @domain3.skills %>
+						<% @skills1.zip(@skills2, @skills3) do |a, b, c| %>
+							<tr>
+								<td><%= skills[i] %></td>
+								<td style="text-align: center"><%= if a.presence != nil then a.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if b.presence != nil then b.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if c.presence != nil then c.presence == true ? "P" : "NP" end %></td>
+								<td></td>
+							</tr>
+							<% i += 1 %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="social-emotional" class="tab-pane fade">
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover report_card">
+					<thead>
+						<tr>
+							<th class="col-sm-6">Social-Emotional</th>
+							<th class="col-sm-1">Eval 1</th>
+							<th class="col-sm-1">Eval 2</th>
+							<th class="col-sm-1">Eval 3</th>
+							<th class="col-sm-3">Comments</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% skills = [] %>
+						<% i = 0 %>
+						<% File.readlines("public/skills/sed.txt").map do |line| skills << line end %>
+						<% @domain1 = @evaluations.first.domains.where(:name => "Social-Emotional").first %>
+						<% @domain2 = @evaluations.second.domains.where(:name => "Social-Emotional").first %>
+						<% @domain3 = @evaluations.third.domains.where(:name => "Social-Emotional").first %>
+						<% @skills1 = @domain1.skills %>
+						<% @skills2 = @domain2.skills %>
+						<% @skills3 = @domain3.skills %>
+						<% @skills1.zip(@skills2, @skills3) do |a, b, c| %>
+							<tr>
+								<td><%= skills[i] %></td>
+								<td style="text-align: center"><%= if a.presence != nil then a.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if b.presence != nil then b.presence == true ? "P" : "NP" end %></td>
+								<td style="text-align: center"><%= if c.presence != nil then c.presence == true ? "P" : "NP" end %></td>
+								<td></td>
+							</tr>
+							<% i += 1 %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</div>
  	</div>
 </div>

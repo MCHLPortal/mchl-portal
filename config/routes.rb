@@ -7,34 +7,28 @@ Rails.application.routes.draw do
   get '/students/home' => 'students#home'
   get '/students/profile' => 'students#profile'
   get '/students/report_card' => 'students#report_card'
-  get '/students/report_card_gmd' => 'students#report_card_gmd'
-  get '/students/report_card_fmd' => 'students#report_card_fmd'
-  get '/students/report_card_shd' => 'students#report_card_shd'
-  get '/students/report_card_rld' => 'students#report_card_rld'
-  get '/students/report_card_eld' => 'students#report_card_eld'
-  get '/students/report_card_cd' => 'students#report_card_cd'
-  get '/students/report_card_sed' => 'students#report_card_sed'
   get '/students/class' => 'students#my_class'
   get '/students/payments' => 'students#payments'
 
   get '/teachers/home' => 'teachers#home'
   get '/teachers/class' => 'teachers#show_class'
   post '/teachers/class/find' => 'teachers#find'
-  get '/teachers/class/student/:id' => 'teachers#show_student'
-  get '/teachers/class/student/:id/report_card/update' => 'teachers#edit_report_card'
-  patch '/teachers/class/student/:id/report_card/update' => 'teachers#update_report_card'
+  get 'teachers/show_student_handled' => 'teachers#show_student_handled', :as => :show_student_handled
+  get 'teachers/edit_report_card' => 'teachers#edit_report_card', :as => :edit_report_card
+  patch 'teachers/update_report_card' => 'teachers#update_report_card', :as => :update_report_card
 
   get '/admin/home' => 'admins#home'
   get '/admin/students' => 'admins#students'
-  get '/admin/students/new' => 'admins#new_student'
+  get 'admins/new_student' => 'admins#new_student', :as => :new_student
   post '/students' => 'admins#create_student'
   post '/admin/students/find' => 'admins#find_student'
-  get '/admin/students/:id' => 'admins#show_student'
-  get '/admin/students/:id/update' => 'admins#edit_student'
-  patch '/admin/students/:id/update' => 'admins#update_student'
+  get 'admins/show_student' => 'admins#show_student', :as => :show_student
+  get 'admins/edit_student' => 'admins#edit_student', :as => :edit_student
+  patch 'admins/update_student' => 'admins#update_student', :as => :update_student
   get '/admin/students/:id/delete' => 'admins#delete_student'
+
   get '/admin/students/:id/payments' => 'admins#payments'
-  get '/admin/students/:id/payments/new' => 'admins#new_payment'
+  get 'admins/new_payment' => 'admins#new_payment', :as => :new_payment
   post 'payments' => 'admins#create_payment'
   get '/admin/students/:id/payments/:id/delete' => 'admins#delete_payment'
 
@@ -58,8 +52,8 @@ Rails.application.routes.draw do
   get '/admin/sections/:id/delete' => 'admins#delete_section'
   
   get 'admin/assessments' => 'admins#assessments'
-  get '/admin/assessments/:id/update' => 'admins#edit_assessment'
-  patch '/admin/assessments/:id/update' => 'admins#update_assessment'
+  get 'admins/edit_assessment' => 'admins#edit_assessment', :as => :edit_assessment
+  patch 'admins/update_assessment' => 'admins#update_assessment', :as => :update_assessment
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
