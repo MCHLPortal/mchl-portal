@@ -8,7 +8,7 @@ class AdminsController < ApplicationController
 
 	def find_student
 		@students = Student.where("fname = ? OR mname = ? OR lname = ?", params[:search_string], params[:search_string], params[:search_string])
-	
+
 		render "students"
 	end
 
@@ -193,7 +193,7 @@ class AdminsController < ApplicationController
 
 	def find_teacher
 		@teachers = Employee.where("fname = ? OR mname = ? OR lname = ?", params[:search_string], params[:search_string], params[:search_string])
-	
+
 		render "teachers"
 	end
 
@@ -276,11 +276,12 @@ class AdminsController < ApplicationController
 
 	def sections
 		@sections = Section.all
+		@try = false;
 	end
 
 	def find_section
 		@sections = Section.where(name: params[:search_string])
-	
+
 		render "sections"
 	end
 
@@ -300,7 +301,13 @@ class AdminsController < ApplicationController
 		@section.room_number = params[:section][:room_number]
 		@section.save
 
-		redirect_to "/admin/sections"
+		if @section.save
+			redirect_to "/admin/sections"
+		else
+			@sections = Section.all
+			@try = true
+			render "sections"
+		end
 	end
 
 	def show_section
@@ -336,13 +343,13 @@ class AdminsController < ApplicationController
 
 		redirect_to "/admin/sections"
 	end
-	
+
 	def payments
 		@payments = Payment.where(:student_id => params[:id])
 	end
 
 	def new_payment
-		@payment  = Payment.new		
+		@payment  = Payment.new
 	end
 
 	def create_payment
@@ -351,13 +358,13 @@ class AdminsController < ApplicationController
 		@student = Student.find(params[:id])
 		@count = @student.payments.count
 		@balance = 0
-		
+
 		if (@count == 0)
 			@balance = Assessment.find(@student.assessment_id).total_assessment
 		else
 			@balance = @student.payments.last.balance
 		end
-		
+
 		@payment.student_id = @student.id
 		@payment.date = DateTime.strptime(params[:payment][:date], '%m/%d/%Y').to_date
 		@payment.amount = params[:payment][:amount]
@@ -373,11 +380,11 @@ class AdminsController < ApplicationController
 
 		redirect_to "/admin/students/#{@payment.student_id}/payments"
 	end
-		
+
 	def assessments
 		@assessments = Assessment.all
 	end
-	
+
 	def edit_assessment
 		@assessment = Assessment.find(params[:id])
 	end
@@ -390,7 +397,7 @@ class AdminsController < ApplicationController
 		@assessment.update_attributes(:other_assessment => params[:assessment][:other_assessment])
 		@total_assessment = params[:assessment][:tuition].to_f + params[:assessment][:other_fees].to_f + params[:assessment][:other_assessment].to_f
 		@assessment.update_attributes(:total_assessment => @total_assessment)
-		
+
 		redirect_to "/admin/assessments"
 	end
 end

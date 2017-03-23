@@ -27,6 +27,11 @@
 						<th class="col-sm-1" colspan="3">Options</th>
 					</thead>
 					<tbody>
+						<% if @try %>
+							<% @section.errors.full_messages.each do |message| %>
+								<li><%= message %></li>
+							<% end %>
+						<% end %>
 						<% @sections.each do |section| %>
 							<tr>
 								<td style="text-align: center"><%= section.name %></td>
@@ -55,7 +60,7 @@
 			</div><br>
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-4">
-					<% if controller.action_name == "sections" %>
+				<% if controller.action_name == "sections" || controller.action_name == "create_section" %>
 						<%= button_to('Add Section', new_section_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#new_section', method: 'get', :class => 'btn btn-large btn-primary btn-block'}) %>
 					<% elsif controller.action_name == "find_section" %>
 						<%= button_to('Back', "/admin/sections", {method: 'get', :class => 'btn btn-large btn-primary btn-block'}) %>
