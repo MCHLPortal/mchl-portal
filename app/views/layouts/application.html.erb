@@ -69,7 +69,7 @@
 								</a>
 							</li>
 							<li class="<%= 'active' if controller.action_name == "teachers" ||
-								controller.action_name == "show_teacher" || 
+								controller.action_name == "show_teacher" ||
 								controller.action_name == "edit_teacher" ||
 								controller.action_name == "new_teacher" ||
 								controller.action_name == "find_teacher" %>">
@@ -82,6 +82,7 @@
 								controller.action_name == "show_section" ||
 								controller.action_name == "edit_section" ||
 								controller.action_name == "new_section" ||
+								controller.action_name == "create_section" ||
 								controller.action_name == "find_section" %>">
 								<a href="<%= "/admin/sections" %>">
 									<span class="glyphicon glyphicon-blackboard"></span>
